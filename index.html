@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Evan Pu</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/creative.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Evan Pu</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#about">My Research</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Projects</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Other Profiles</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <div style="center, max-width: 400px" >
+                    <img src="img/face1.gif" style="max-width:15%;" />
+                </div>
+                <h1 id="homeHeading">Hello, My name is Evan Pu</h1>
+                <hr>
+                <p>I am a PhD student studying computer science under Prof. Armando Solar-Lezama at Massachusetts Institute of Technology</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">My Research</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">My Research</h2>
+                    <hr class="light">
+                    <p class="text-faded">My research focuses on the interplay between Machine Learning and Programming Languages. In particular, I'm interested in reasoning about programming in a more ambiguous fashion without strict semantics, and reasoning about learning algorithms in a more structured way with more abstractions.</p>
+                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bg-lighter services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Projects</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <div class="col-lg-12 col-md-12">
+                        <!-- <i class="fa fa-4x fa-diamond text-primary sr-icons"></i> -->
+                        <h3>sk_p: correcting programs using neural networks</h3>
+                        <p class="text-muted text-left">In this project we explore whether it is possible to correct a program by replacing (inserting) some statements so that the
+                        resulting program has fragments of codes that "look like" that of a correct program. To this end, we train a neural network model 
+                        that is capable of generating candidate statements given its two surrounding statements, remembering the correlations between statements in a program fragment. We show this simple scheme is powerful in the context of MOOCs, where many students solve the same assignment problem, thus having a large corpus of shared code fragments. Our approach out-performs the state of the art method which
+                        uses symbolic techniques, and does not require manual correction models for each of the MOOCs assignments.
+                        </p>
+                        <a href="https://arxiv.org/abs/1607.02902" class="btn btn-primary btn-xl sr-button">arXiv</a>
+                        <a href="https://github.com/evanthebouncy/sk_p" class="btn btn-primary btn-xl sr-button">GitHub (soon)</a>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12">
+                        <h3>composible state abstractions in model learning</h3>
+                        <p class="text-muted text-left">In this project we explore whether it is possible for an agent to automatically learn composible state abstractions. As one
+                        interact with their environment, they often makes useful abstractions to simplify the planning problem by planning on the abstract level. A key aspect of a 
+                        good abstraction is that it is composible: One can seemlessly move between abstract states in a predictible way, without "falling outside" the abstraction
+                        during the proccess. We investigate if such property can be enforced during model learning, so that we learn a composible set of abstractions.
+                        </p>
+                        <a href="https://github.com/evanthebouncy/compromise" class="btn btn-primary btn-xl sr-button">GitHub: Compromise</a>
+                    </div>
+        </div>
+    </section>
+<!-- 
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter popup-gallery">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/2.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/3.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
+                        <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Other Profiles</h2>
+
+                <a href="https://github.com/evanthebouncy" class="btn btn-default btn-xl sr-button">GitHub</a>
+                <a href="https://www.linkedin.com/in/evanthebouncy" class="btn btn-default btn-xl sr-button">LinkedIn</a>
+                <a href="http://groups.csail.mit.edu/cap/" class="btn btn-default btn-xl sr-button">Research Group</a>
+                <a href="https://www.quora.com/profile/Evan-Pu" class="btn btn-default btn-xl sr-button">Quora</a>
+
+            </div>
+<!-- 
+            <div class="call-to-action">
+                <h2>Free Download at Start Bootstrap!</h2>
+                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
+            </div> -->
+        </div>
+    </aside>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Let's Talk!</h2>
+                    <hr class="primary">
+                    <p>yewenpu AT mit DOT edu</p>
+                </div>
+<!--                 <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p>123-456-6789</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/creative.min.js"></script>
+
+</body>
+
+</html>
