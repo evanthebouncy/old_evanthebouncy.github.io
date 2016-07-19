@@ -56,7 +56,10 @@
                         <a class="page-scroll" href="#services">Projects</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Other Profiles</a>
+                        <a class="page-scroll" href="#publications">Publications</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#otherprof">Other Profiles</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -89,17 +92,17 @@
                     <h2 class="section-heading">My Research</h2>
                     <hr class="light">
                     <p class="text-faded">My research focuses on the interplay between Machine Learning and Programming Languages. In particular, I'm interested in reasoning about programming in a more ambiguous fashion without strict semantics, and reasoning about learning algorithms in a more structured way with more abstractions.</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Projects</a>
+                    <!-- <a href="#services" class="btn btn-primary btn-xl page-scroll">My Works</a> -->
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="bg-lighter services">
+    <section id="services" class="bg-lighter">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Projects</h2>
+                    <h2 class="section-heading text-dim">Projects</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -108,129 +111,65 @@
                 <div class="col-lg-12 col-md-12 text-center">
                     <div class="col-lg-12 col-md-12">
                         <!-- <i class="fa fa-4x fa-diamond text-primary sr-icons"></i> -->
-                        <h3>sk_p: correcting programs using neural networks</h3>
-                        <p class="text-muted text-left">In this project we explore whether it is possible to correct a program by replacing (inserting) some statements so that the
+                        <h3 class="text-dim">sk_p: correcting programs using neural networks</h3>
+                        <p class="text-muted text-left">In this project we explore whether it is possible to correct a program by altering (via replacement, insertion, deletions) some statements so that the
                         resulting program has fragments of codes that "look like" that of a correct program. To this end, we train a neural network model 
                         that is capable of generating candidate statements given its two surrounding statements, remembering the correlations between statements in a program fragment. We show this simple scheme is powerful in the context of MOOCs, where many students solve the same assignment problem, thus having a large corpus of shared code fragments. Our approach out-performs the state of the art method which
                         uses symbolic techniques, and does not require manual correction models for each of the MOOCs assignments.
                         </p>
-                        <a href="https://arxiv.org/abs/1607.02902" class="btn btn-primary btn-xl sr-button">arXiv</a>
-                        <a href="https://github.com/evanthebouncy/sk_p" class="btn btn-primary btn-xl sr-button">GitHub (soon)</a>
+                        <a href="https://arxiv.org/abs/1607.02902" class="btn btn-default btn-xl sr-button">arXiv</a>
+                        <a href="https://github.com/evanthebouncy/sk_p" class="btn btn-default btn-xl sr-button">GitHub (soon)</a>
                     </div>
 
                     <div class="col-lg-12 col-md-12">
-                        <h3>composible state abstractions in model learning</h3>
+                        <h3 class="text-dim">composible state abstractions in model learning</h3>
                         <p class="text-muted text-left">In this project we explore whether it is possible for an agent to automatically learn composible state abstractions. As one
                         interact with their environment, they often makes useful abstractions to simplify the planning problem by planning on the abstract level. A key aspect of a 
                         good abstraction is that it is composible: One can seemlessly move between abstract states in a predictible way, without "falling outside" the abstraction
                         during the proccess. We investigate if such property can be enforced during model learning, so that we learn a composible set of abstractions.
                         </p>
-                        <a href="https://github.com/evanthebouncy/compromise" class="btn btn-primary btn-xl sr-button">GitHub: Compromise</a>
+                        <a href="https://github.com/evanthebouncy/compromise" class="btn btn-default btn-xl sr-button">GitHub</a>
                     </div>
         </div>
     </section>
-<!-- 
-    <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/2.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/3.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+
+    <section id="publications" class="bg-lighter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-dim">Publications</h2>
+                    <hr class="primary">
                 </div>
             </div>
         </div>
-    </section> -->
+        <div class="container">
+                <div class="col-lg-12 col-md-12 text-left text-muted">
+                    <div class="col-lg-12 col-md-12">
+                        <a href="https://arxiv.org/abs/1607.02902" class="text-muted">sk_p: a Neural Program Corrector for MOOCs (Yewen Pu, Karthik Narasimhan, Armando Solar-Lezama, Regina Barzilay. arXiv, 2016)</a>
+                    </div>
+                     <div class="col-lg-12 col-md-12">                   
+                        <a href="http://dl.acm.org/citation.cfm?id=2429125" class="text-muted">Synthesis of biological models from mutation experiments (Ali Sinan Koksal, Yewen Pu, Saurabh Srivastava, Rastislav Bodik, Jasmin Fisher, and Nir Piterman. POPL, 2013)</a>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <a href="http://dl.acm.org/citation.cfm?id=2048076" class="text-muted">Synthesis of first-order dynamic programming algorithms (Yewen Pu, Rastislav Bodik, and Saurabh Srivastava. OOPSLA, 2016)</a>
+                    </div>
+                </div>
+        </div>
+    </section>
 
-    <aside class="bg-dark">
-        <div class="container text-center">
+    <section id="otherprof" class="bg-lighter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-dim">Other Profiles</h2>
+                    <hr class="primary">
+                    <p class="text-dim">Links to my other profiles</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+                <div class="col-lg-12 col-md-12 text-muted text-center">
             <div class="call-to-action">
-                <h2>Other Profiles</h2>
 
                 <a href="https://github.com/evanthebouncy" class="btn btn-default btn-xl sr-button">GitHub</a>
                 <a href="https://www.linkedin.com/in/evanthebouncy" class="btn btn-default btn-xl sr-button">LinkedIn</a>
@@ -238,15 +177,11 @@
                 <a href="https://www.quora.com/profile/Evan-Pu" class="btn btn-default btn-xl sr-button">Quora</a>
 
             </div>
-<!-- 
-            <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
-            </div> -->
+                </div>
         </div>
-    </aside>
+    </section>
 
-    <section id="contact">
+    <section id="contact" class="bg-primary">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
