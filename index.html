@@ -130,6 +130,12 @@
                         </p>
                         <a href="https://github.com/evanthebouncy/compromise" class="btn btn-default btn-xl sr-button">GitHub</a>
                     </div>
+
+                    <div class="col-lg-12 col-md-12">
+                        <h3 class="text-dim">approximate inference on factor graph with bounds</h3>
+                        <p class="text-muted text-left">In this (somewhat failed) project we wish to provide approximate posterior distribution while guaranteeing a error bound on the approximation. To do this we modify the variable elimination algorithm on a factor graph such that all potentials in the graph is bounded above and below by piece-wise polynomials. The multiplication and integration is then defined over these piece-wise polynomials, and one can tighten the error bound by sub-dividing the polynomials. In the end however the number of piece-wise polynomials grows exponentially with the number of factor multiplications and integrations, and the system become unscalable to cover some of the more interesting distributions and the project is abandoned</p>
+                        <a href="./files/approximation-inference-factor.pdf" class="btn btn-default btn-xl sr-button">PDF</a>
+                    </div>
         </div>
     </section>
 
@@ -202,7 +208,10 @@
     </section>
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
