@@ -14,7 +14,7 @@ body {
 hr {
   border-color: rgba(208, 201, 160, 0.73);
   border-width: 3px;
-  max-width: 150px;
+  max-width: 300px;
 }
 hr.light {
   border-color: rgba(208, 201, 160, 0.73);
@@ -27,7 +27,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #eb3812;
+  color: #d0c9a0;
 }
 h1,
 h2,
@@ -38,7 +38,7 @@ h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 p {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -60,7 +60,8 @@ p {
 }
 
 .text-dim {
-  color: #555;
+  color: #444;
+  font-size: 18px;
 }
 
 section {
@@ -84,6 +85,7 @@ aside {
   color: #F05F40;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
+  font-size: 18px;
   text-transform: uppercase;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
@@ -100,7 +102,7 @@ aside {
 .navbar-default .nav > li > a:focus {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 18px;
   color: #222222;
 }
 .navbar-default .nav > li > a:hover,
@@ -141,8 +143,8 @@ aside {
     border-color: rgba(34, 34, 34, 0.05);
   }
   .navbar-default.affix .navbar-header .navbar-brand {
-    color: #F05F40;
-    font-size: 14px;
+    color: #595644;
+    font-size: 18px;
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
@@ -213,7 +215,7 @@ header .header-content .header-content-inner p {
     font-size: 50px;
   }
   header .header-content .header-content-inner p {
-    font-size: 18px;
+    font-size: 22px;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -221,6 +223,7 @@ header .header-content .header-content-inner p {
 }
 .section-heading {
   margin-top: 0;
+  font-size: 22px;
 }
 .service-box {
   max-width: 400px;
