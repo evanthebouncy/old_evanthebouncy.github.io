@@ -53,13 +53,13 @@
                         <a class="page-scroll" href="#about">My Research</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Projects</a>
+                        <a class="page-scroll" href="#services">Research Topics</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#publications">Publications</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#otherprof">Other Profiles</a>
+                        <a class="page-scroll" href="#otherprof">Cyber</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#resume">Resume</a>
@@ -96,7 +96,6 @@
                     <hr class="light">
                     <p class="text-faded">My research focuses on the interplay between AI and Programming Languages.
                     In particular, I'm interested in designing computations that can be learned by a machines, as human-learnability and machine-learnability are often incompatible.</p>
-                    <!-- <a href="#services" class="btn btn-primary btn-xl page-scroll">My Works</a> -->
                 </div>
             </div>
         </div>
@@ -106,7 +105,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-dim">Projects</h2>
+                    <h2 class="section-heading text-dim">Research Topics</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -114,10 +113,49 @@
         <div class="container">
                 <div class="col-lg-12 col-md-12 text-center">
 
+                    <!-- block for repl -->
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <h3 class="text-dim">Write, Execute, Assess: Program Synthesis with a REPL</h3>
+                        <p class="text-muted smalll">Kevin Ellis*, Maxwell Nye*, Yewen Pu*, Felix Sosa*, Josh Tenenbaum, Armando Solar-Lezama</p>
+
+                        <div class="col-lg-12 col-md-12 whitee">
+                            <img class="center whitee", src="img/wrench_wave.png", style="max-width:100%;">
+                        </div>
+
+                        <p class="text-muted smalll text-left"> 
+                        We present a neural program synthesis approach
+                        integrating components which write, execute, and assess
+                        code to navigate the search space of possible programs.
+                        We equip the search process with an interpreter or a
+                        read-eval-print-loop (REPL), which immediately executes
+                        partially written programs, exposing their semantics.
+                        The REPL addresses a basic challenge of program
+                        synthesis: tiny changes in syntax can lead to huge
+                        changes in semantics. We train a pair of models, a
+                        policy that proposes the new piece of code to write,
+                        and a value function that assesses the prospects of the
+                        code written so-far. At test time we can combine these
+                        models with a Sequential Monte Carlo algorithm. We
+                        apply our approach to two domains: synthesizing text
+                        editing programs and inferring 2D and 3D graphics
+                        programs.
+                        </p>
+                        <a href="https://arxiv.org/abs/1906.04604" class="btn btn-default btn-xl sr-button">arXiv</a>
+
+                        <hr class="light thinn">
+                    </div>
+
+
                     <!-- block for discovering examples -->
-                    <div class="col-lg-12 col-md-12">
-                        <h3 class="text-dim">Discovering Representative Examples for Program Synthesis</h3>
-                        <p class="text-muted text-left"> 
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <h3 class="text-dim">Discovering Representative Examples for Program Synthesis (ICML 2018)</h3>
+                        <p class="text-muted smalll">Yewen Pu, Zachery Miranda, Leslie P Kaelbling, Armando Solar-Lezama</p>
+
+                        <div class="col-lg-12 col-md-12 whitee">
+                            <img class="center whitee", src="img/repr_subset.png", style="max-width:100%;">
+                        </div>
+                        
+                        <p class="text-muted smalll text-left"> 
                         Program synthesis is a class of regression problems
                         where one seeks a solution, in the form of a
                         source-code program, mapping the inputs to their
@@ -142,13 +180,22 @@
                         </p>
                         <a href="https://arxiv.org/abs/1711.03243" class="btn btn-default btn-xl sr-button">arXiv</a>
                         <a href="https://github.com/evanthebouncy/icml2018_selecting_representative_examples" class="btn btn-default btn-xl sr-button">GitHub</a>
+
+                        <hr class="light thinn">
                     </div>
 
 
                     <!-- block for UAI information paper -->
-                    <div class="col-lg-12 col-md-12">
-                        <h3 class="text-dim">Learning to Acquire Information</h3>
-                        <p class="text-muted text-left"> 
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <h3 class="text-dim">Learning to Acquire Information (UAI 2017)</h3>
+                        <p class="text-muted smalll">Yewen Pu, Leslie P Kaelbling, Armando Solar-Lezama</p>
+
+                        <div class="col-lg-12 col-md-12 whitee">
+                            <img class="center whitee", src="img/battle_ship.gif", style="max-width:40%;">
+                            <img class="center whitee", src="img/sorting.gif", style="max-width:40%;">
+                        </div>
+
+                        <p class="text-muted smalll text-left"> 
                         We consider the problem of diagnosis where a set of
                         simple observations are used to infer a potentially
                         complex hidden hypothesis. Finding the optimal subset
@@ -169,88 +216,49 @@
                         </p>
                         <a href="https://arxiv.org/abs/1704.06131" class="btn btn-default btn-xl sr-button">arXiv</a>
                         <a href="https://github.com/evanthebouncy/uai2017_learning_to_acquire_information" class="btn btn-default btn-xl sr-button">GitHub</a>
+
+                        <hr class="light thinn">
                     </div>
 
 
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-10 col-lg-offset-1">
                         <!-- <i class="fa fa-4x fa-diamond text-primary sr-icons"></i> -->
-                        <h3 class="text-dim">sk_p: correcting programs using neural networks</h3>
-                        <p class="text-muted text-left">In this project we
-                        explore whether it is possible to correct a program by
-                        altering (via replacement, insertion, deletions) some
-                        statements so that the resulting program has fragments
-                        of codes that "look like" that of a correct program. To
-                        this end, we train a neural network model that is
-                        capable of generating candidate statements given its
-                        two surrounding statements, remembering the
-                        correlations between statements in a program fragment.
-                        We show this simple scheme is powerful in the context
-                        of MOOCs, where many students solve the same assignment
-                        problem, thus having a large corpus of shared code
-                        fragments. Our approach out-performs the state of the
-                        art method which uses symbolic techniques, and does not
-                        require manual correction models for each of the MOOCs
-                        assignments.  </p>
+                        <h3 class="text-dim">sk_p: a neural program corrector for MOOCs (OOPSLA Workshop 2016)</h3>
+                        <p class="text-muted smalll">Yewen Pu, Karthik Narasimhan, Armando Solar-Lezama, Regina Barzilay</p>
+
+                        <p class="text-muted smalll text-left">
+                        We present a novel technique for automatic program
+                        correction in MOOCs, capable of fixing both syntactic
+                        and semantic errors without manual, problem specific
+                        correction strategies. Given an incorrect student
+                        program, it generates candidate programs from a
+                        distribution of likely corrections, and checks each
+                        candidate for correctness against a test suite.  The
+                        key observation is that in MOOCs many programs share
+                        similar code fragments, and the seq2seq neural network
+                        model, used in the natural-language processing task of
+                        machine translation, can be modified and trained to
+                        recover these fragments.  Experiment shows our scheme
+                        can correct 29% of all incorrect submissions and
+                        out-performs state of the art approach which requires
+                        manual, problem specific correction strategies.
+                        </p>
                         <a href="https://arxiv.org/abs/1607.02902" class="btn btn-default btn-xl sr-button">arXiv</a>
-                        <a href="https://github.com/evanthebouncy/sk_p" class="btn btn-default btn-xl sr-button">GitHub (soon)</a>
                     </div>
 
-                    <div class="col-lg-12 col-md-12">
-                        <h3 class="text-dim">approximate inference on factor graph with bounds</h3>
-                        <p class="text-muted text-left">In this (somewhat
-                        failed) project we wish to provide approximate
-                        posterior distribution while guaranteeing a error bound
-                        on the approximation. To do this we modify the variable
-                        elimination algorithm on a factor graph such that all
-                        potentials in the graph is bounded above and below by
-                        piece-wise polynomials. Of course it cannot scale and
-                        the project is abandoned</p>
-                        <a href="./files/approximation-inference-factor.pdf" class="btn btn-default btn-xl sr-button">PDF</a>
-                    </div>
         </div>
     </section>
 
-    <section id="publications" class="bg-lighter">
+    <section id="publications" class="bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-dim">Publications</h2>
+                    <h2 class="section-heading text-faded">Publications</h2>
                     <hr class="primary">
+                    <a href="https://scholar.google.com/citations?user=LJnNKXMAAAAJ&hl=en" class="btn btn-default btn-xl sr-button">Scholar</a>
+                    <a href="https://dblp.org/pers/hd/p/Pu:Yewen" class="btn btn-default btn-xl sr-button">DBLP</a>
                 </div>
             </div>
-        </div>
-        <div class="container">
-                <div class="col-lg-12 col-md-12 text-left text-muted">
-
-                    <div class="col-lg-12 col-md-12">
-                        <a href="http://cfg.mit.edu/content/inversecsg-automatic-conversion-3d-models-csg-trees" class="text-dim">InverseCSG: Automatic Conversion Of 3D Models To CSG Trees (Tao Du, Jeevana Priya Inala, Yewen Pu, Andrew Spielberg, Adriana Schulz, Daniela Rus, Armando Solar-Lezama, Wojciech Matusik, ACM SIGGRAPH ASIA 2018) </a>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                        <a href="https://arxiv.org/abs/1805.08328" class="text-muted">Verifiable Reinforcement Learning via Policy Extraction (Osbert Bastani, Yewen Pu, Armando Solar-Lezama, NIPS 2018) </a>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                        <a href="https://arxiv.org/abs/1711.03243" class="text-muted">Selecting Representative Examples for Program Synthesis (Yewen Pu, Zachery Miranda, Leslie P Kaelbling, Armando Solar-Lezama, ICML 2018)</a>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                        <a href="https://arxiv.org/abs/1704.06131" class="text-muted">Learning to Acquire Information (Yewen Pu, Leslie P Kaelbling, Armando Solar-Lezama, UAI 2017)</a>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                        <a href="https://arxiv.org/abs/1607.02902" class="text-muted">sk_p: a Neural Program Corrector for MOOCs (Yewen Pu, Karthik Narasimhan, Armando Solar-Lezama, Regina Barzilay. OOPSLA workshop, 2016)</a>
-                    </div>
-
-                     <div class="col-lg-12 col-md-12">                   
-                        <a href="http://dl.acm.org/citation.cfm?id=2429125" class="text-muted">Synthesis of biological models from mutation experiments (Ali Sinan Koksal, Yewen Pu, Saurabh Srivastava, Rastislav Bodik, Jasmin Fisher, and Nir Piterman. POPL, 2013)</a>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                        <a href="http://dl.acm.org/citation.cfm?id=2048076" class="text-muted">Synthesis of first-order dynamic programming algorithms (Yewen Pu, Rastislav Bodik, and Saurabh Srivastava. OOPSLA, 2011)</a>
-                    </div>
-
-                </div>
         </div>
     </section>
 
@@ -258,7 +266,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-dim">Other Profiles</h2>
+                    <h2 class="section-heading text-dim">evanthebouncy @ internet</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -268,21 +276,20 @@
             <div class="call-to-action">
 
                 <a href="https://github.com/evanthebouncy" class="btn btn-default btn-xl sr-button">GitHub</a>
+                <a href="https://medium.com/@evanthebouncy" class="btn btn-default btn-xl sr-button">Medium</a>
                 <a href="https://www.twitch.tv/evanthebouncy" class="btn btn-default btn-xl sr-button">Twitch.tv</a>
                 <a href="https://www.linkedin.com/in/evanthebouncy" class="btn btn-default btn-xl sr-button">LinkedIn</a>
-                <a href="http://groups.csail.mit.edu/cap/" class="btn btn-default btn-xl sr-button">Research Group</a>
-                <a href="https://www.quora.com/profile/Evan-Pu" class="btn btn-default btn-xl sr-button">Quora</a>
 
             </div>
                 </div>
         </div>
     </section>
 
-    <section id="resume" class="bg-lighter">
+    <section id="resume" class="bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-dim">Resume</h2>
+                    <h2 class="section-heading text-faded">Resume</h2>
                     <hr class="primary">
                     <p>last updated 2018-02-22</p>
                 </div>

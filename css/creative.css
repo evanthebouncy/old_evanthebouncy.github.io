@@ -13,11 +13,14 @@ body {
 }
 hr {
   border-color: rgba(208, 201, 160, 0.73);
-  border-width: 3px;
+  border-width: 5px;
   max-width: 300px;
 }
 hr.light {
-  border-color: rgba(208, 201, 160, 0.73);
+  border-color: rgba(148, 141, 100, 0.73);
+}
+.thinn{
+    border-width: 2px;
 }
 a {
   -webkit-transition: all 0.35s;
@@ -36,6 +39,12 @@ h4,
 h5,
 h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+.whitee {
+      background-color: rgb(300, 300, 300);
+}
+.smalll {
+    font-size: 14px;
 }
 p {
   font-size: 20px;
@@ -122,6 +131,7 @@ aside {
   .navbar-default {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.3);
+    border-width: 0 0 4px;
   }
   .navbar-default .navbar-header .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
