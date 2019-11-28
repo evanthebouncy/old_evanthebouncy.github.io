@@ -1,0 +1,36 @@
+.container {
+    width: 70vmin;
+    height: 70vmin;
+}
+
+.box {
+    width: 8vmin;
+    height: 8vmin;
+    position: absolute;
+    background-color: #232621;
+    border-color: white;
+    border-style: solid;
+    border-width: thin;
+    background-size: cover;
+}
+
+.box.big {
+    width: 16vmin;
+    height: 16vmin;
+}
+
+.box.smol {
+    width: 4vmin;
+    height: 4vmin;
+}
+
+.interact{
+    width: 16vmin;
+    height: 16vmin;
+    position: absolute;
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    border-width: thin;
+}
+
