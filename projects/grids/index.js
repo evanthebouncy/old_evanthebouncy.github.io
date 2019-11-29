@@ -13,8 +13,8 @@ var OFFSET2 = WW * 7;
 var OFFSET3 = WW * 15;
 var OFFSET4 = OFFSET3 + WW*3
 
-let target_id = Math.floor(Math.random() * all_shapes.length);
-let target = all_shapes[target_id];
+var target_id = Math.floor(Math.random() * all_shapes.length);
+var target = all_shapes[target_id];
 
 var L0SETS = {};
 
@@ -68,7 +68,27 @@ function make_target(){
             //     $(this).css("border-width", "thin");
             // });
             // put empty
+
             $(box).css("background-image", 'url(assets/empty.png)');
+
+            $(box).click(function(){
+                target_id = Math.floor(Math.random() * all_shapes.length);
+                target = all_shapes[target_id];
+                examples = {};
+                for (var jjj=0; jjj<3; jjj++){
+                    clear_grid_canvas("#cand_box_"+jjj);
+                }
+                clear_grid_canvas("#box_");
+                // clear with empty
+                for (var i=0; i<L; i+=1) {
+                    for (var j=0; j<L; j+=1) {
+                        let box_name = "#target_box_"+i+j;
+                        $(box_name).css("background-image", 'url(assets/empty.png)');
+                    }
+                }
+                render_shape_list(target, "#target_box_");
+            });
+
             $("#grid").append(box);
 
         };
@@ -88,11 +108,7 @@ function make_candidates(){
                 box.className = "box smol";
                 box.style.top = "" + (i*WW_SMOL + OFFSETTOP + WW_SMOL * cand * 7.5) + "vmin";
                 box.style.left = "" + (j*WW_SMOL + OFFSET4) + "vmin";
-                // $(box).hover(function(){
-                //     $(this).css("border-width", "medium");
-                // }, function(){
-                //     $(this).css("border-width", "thin");
-                // });
+
                 $("#grid").append(box);
 
             };
