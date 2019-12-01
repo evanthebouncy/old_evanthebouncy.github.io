@@ -14,6 +14,30 @@
     background-size: cover;
 }
 
+.box.highlight {
+    width : 28vmin;
+    height : 28vmin;
+    border-color : green;
+    border-width: 5px;
+    border-style: solid;
+    background-color: transparent;
+}
+
+.box.text {
+    font-size: x-large;
+    font-family: Helvetica;
+    height: 1vmin;
+    width: 32vmin;
+    background-color : #ffffff;
+    font-weight: bold;
+}
+.box.text.warning {
+    color : red;
+}
+.box.text.small {
+    font-size: large;
+}
+
 .box.big {
     width: 16vmin;
     height: 16vmin;

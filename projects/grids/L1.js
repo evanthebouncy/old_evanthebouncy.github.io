@@ -90,7 +90,6 @@ function logS1(shape_id, utters){
 }
 
 
-
 function L1(examples) {
     var utters = [];
     // examples to utterances
@@ -100,24 +99,25 @@ function L1(examples) {
     console.log(utters);
 
     let l0_candidates = Array.from(L0(examples));
-    if (l0_candidates.length > 120) {
-        console.log("too big "+l0_candidates.length);
-        return l0_candidates;
-    }
-    console.log(l0_candidates);
+    console.log("all l0 sol length ", l0_candidates.length);
+    let sorted_l0_cands = l0_candidates.sort(function(a,b){
+        return random_shape_order[a] - random_shape_order[b];
+    });
+    let subsample_candidates = l0_candidates;
 
-    console.log("num programs ", l0_candidates.length);
     var s1logprs = [];
-    for (var j=0; j<l0_candidates.length; j++){
-        console.log(j)
-        let s1logpr = logS1(l0_candidates[j], utters);
-        s1logprs.push([-s1logpr, l0_candidates[j]]);
+    for (var j=0; j<subsample_candidates.length; j++){
+        let s1logpr = logS1(subsample_candidates[j], utters);
+        console.log(j, all_shapes[subsample_candidates[j]].length,s1logpr);
+        s1logprs.push([-s1logpr, subsample_candidates[j]]);
     }
     console.log(s1logprs);
-        // console.log(S11(l0_candidates[2], []));
-    let sorted_cands = s1logprs.sort();
+        // console.log(S11(subsample_candidates[2], []));
+    let sorted_cands = s1logprs.sort(function(a,b){
+        return a[0] - b[0];
+    });
+    console.log(sorted_cands);
     return sorted_cands.map(x => x[1]);
 }
-
 
 

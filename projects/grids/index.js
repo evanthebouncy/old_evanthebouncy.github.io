@@ -8,15 +8,26 @@ var examples = {};
 var WW = 8;
 var WW_SMOL = 4;
 
-var OFFSETTOP = WW * 1.2;
-var OFFSET2 = WW * 7;
-var OFFSET3 = WW * 15;
-var OFFSET4 = OFFSET3 + WW*3
+var GRID_TOPP = -3;
+
+var OFFSETTEXTTOP = WW * 0.1;
+var OFFSETTOP = GRID_TOPP + WW * 1.2;
+var OFFSET2 =   GRID_TOPP + WW * 7;
+var OFFSET3 =   GRID_TOPP + WW * 15;
+var OFFSET4 =   GRID_TOPP + OFFSET3 + WW*3
 
 var target_id = Math.floor(Math.random() * all_shapes.length);
 var target = all_shapes[target_id];
 
 var L0SETS = {};
+
+let random_shape_order = {}
+for (var shapid = 0; shapid < all_shapes.length; shapid++){
+    random_shape_order[shapid] = Math.random();
+}
+
+var target_id = Math.floor(Math.random() * all_shapes.length);
+var target = all_shapes[target_id];
 
 // clear a grid canvas
 function clear_grid_canvas(grid_canv_name){
@@ -38,6 +49,12 @@ function populate_empty_canvas(grid_canv_name){
     }
 }
 
+function clear_candidate_border(){
+    for (var i=0; i<3; i++){
+        $("#candidate_highlight_"+i).css("border-width", "0px");
+    }
+}
+
 // render a list of shapes onto grid vansaas
 function render_shape_list(shape_list, grid_canv_name){
     Object.entries(shape_list).forEach( ([key, value]) => {
@@ -51,6 +68,28 @@ function render_shape_list(shape_list, grid_canv_name){
     });
 }
 
+// make new problem instance
+function new_problem(){
+    // grab new target-id and clear examples
+    target_id = Math.floor(Math.random() * all_shapes.length);
+    target = all_shapes[target_id];
+    examples = {};
+    // clear all boxes with empty
+    for (var jjj=0; jjj<3; jjj++){
+        clear_grid_canvas("#cand_box_"+jjj);
+    }
+    clear_candidate_border();
+    clear_grid_canvas("#box_");
+    // re-render target image
+    for (var i=0; i<L; i+=1) {
+        for (var j=0; j<L; j+=1) {
+            let box_name = "#target_box_"+i+j;
+            $(box_name).css("background-image", 'url(assets/empty.png)');
+        }
+    }
+    render_shape_list(target, "#target_box_");
+}
+
 // the target
 function make_target(){
     for (var i=0; i<L; i+=1) {
@@ -62,37 +101,23 @@ function make_target(){
             box.className = "box smol";
             box.style.top = "" + (i*WW_SMOL + OFFSETTOP) + "vmin";
             box.style.left = "" + (j*WW_SMOL + 10) + "vmin";
-            // $(box).hover(function(){
-            //     $(this).css("border-width", "medium");
-            // }, function(){
-            //     $(this).css("border-width", "thin");
-            // });
-            // put empty
-
-            $(box).css("background-image", 'url(assets/empty.png)');
-
             $(box).click(function(){
-                target_id = Math.floor(Math.random() * all_shapes.length);
-                target = all_shapes[target_id];
-                examples = {};
-                for (var jjj=0; jjj<3; jjj++){
-                    clear_grid_canvas("#cand_box_"+jjj);
-                }
-                clear_grid_canvas("#box_");
-                // clear with empty
-                for (var i=0; i<L; i+=1) {
-                    for (var j=0; j<L; j+=1) {
-                        let box_name = "#target_box_"+i+j;
-                        $(box_name).css("background-image", 'url(assets/empty.png)');
-                    }
-                }
-                render_shape_list(target, "#target_box_");
+                new_problem();
             });
 
             $("#grid").append(box);
 
         };
     };
+
+    var box = document.createElement("div"); 
+    box.id = "target_text";
+    box.innerHTML = "target";
+    box.className = "box text";
+    box.style.top = "" + OFFSETTEXTTOP + "vmin";
+    box.style.left = "" + 10 + "vmin";
+    $("#grid").append(box);
+
     render_shape_list(target, "#target_box_");
 }
 
@@ -106,17 +131,58 @@ function make_candidates(){
                 var box = document.createElement("div"); 
                 box.id = "cand_box_"+cand+i+j;
                 box.className = "box smol";
-                box.style.top = "" + (i*WW_SMOL + OFFSETTOP + WW_SMOL * cand * 7.5) + "vmin";
+                box.style.top = "" + (i*WW_SMOL + OFFSETTOP + WW_SMOL * cand * 8) + "vmin";
                 box.style.left = "" + (j*WW_SMOL + OFFSET4) + "vmin";
 
                 $("#grid").append(box);
 
             };
         };
+
+        // candidate text
+        var box = document.createElement("div"); 
+        box.id = "candidate_text_" + cand;
+        box.innerHTML = "candidate " + cand;
+        box.className = "box text small";
+        box.style.top = "" + (OFFSETTOP - 2.3 + WW_SMOL * cand * 8) + "vmin";
+        box.style.left = "" + (OFFSET4 + 0.1) + "vmin";
+        $("#grid").append(box);
+
+        // candidate highlight box
+        var box = document.createElement("div"); 
+        box.id = "candidate_highlight_" + cand;
+        box.className = "box highlight"
+        box.style.top = "" + (OFFSETTOP + WW_SMOL * cand * 8) + "vmin";
+        box.style.left = "" + (OFFSET4 ) + "vmin";
+        $("#grid").append(box);
+
     };
+
+    var box = document.createElement("div"); 
+    box.id = "result_text";
+    box.innerHTML = "results";
+    box.className = "box text";
+    box.style.top = "" + OFFSETTEXTTOP + "vmin";
+    box.style.left = "" + OFFSET4 + "vmin";
+    $("#grid").append(box);
 
 }
 
+// render listener results
+function render_l_results(l_candidates){
+    clear_candidate_border();
+    let n_cands = Math.min(l_candidates.length, 3)
+    for (var cand_id = 0; cand_id < n_cands; cand_id++){
+        let cand_shape = all_shapes[l_candidates[cand_id]];
+        clear_grid_canvas("#cand_box_"+cand_id);
+        populate_empty_canvas("#cand_box_"+cand_id);
+        render_shape_list(cand_shape, "#cand_box_"+cand_id);
+
+        if (l_candidates[cand_id] == target_id){
+            $("#candidate_highlight_"+cand_id).css("border-width", "5px");
+        }
+    }
+}
 
 // the working grid
 function make_working_grid(){
@@ -139,19 +205,43 @@ function make_working_grid(){
             // on click update my background to match
             $(box).click(function(){
                 if (examples[[coord_i, coord_j]] == undefined){
-                    examples[[coord_i, coord_j]] = [shape_idx, color_idx]; 
+                    // the empty tile should have a canonicalized 'coloridx' of 0
+                    let color_idx_empty_safe = shape_idx == 2 ? 0 : color_idx;
+                    examples[[coord_i, coord_j]] = [shape_idx, color_idx_empty_safe];
                     render_plant();
-                    return;
-                } 
-                if (examples[[coord_i, coord_j]] !== undefined){
+                } else {
                     delete examples[[coord_i, coord_j]];
                     render_plant();
-                    return;
                 }
+
+                let legal_utter = said_to_dict(S0(target_id,[]));
+                $("#warning_text").text("")
+                Object.entries(examples).forEach(([key, value]) => {
+                    if (String(legal_utter[key]) != String(value)){
+                        $("#warning_text").text("inconsistent examples!")
+                    }
+                });
             });
 
         };
     };
+    // working area text
+    var box = document.createElement("div"); 
+    box.id = "working_text";
+    box.innerHTML = "working area";
+    box.className = "box text";
+    box.style.top = "" + OFFSETTEXTTOP + "vmin";
+    box.style.left = "" + OFFSET2 + "vmin";
+    $("#grid").append(box);
+
+    // warming text
+    var box = document.createElement("div"); 
+    box.id = "warning_text";
+    box.innerHTML = "";
+    box.className = "box text warning";
+    box.style.top = "" + (OFFSETTEXTTOP + 3)+ "vmin";
+    box.style.left = "" + OFFSET2 + "vmin";
+    $("#grid").append(box);
 }
 
 /* Creating the grid */
@@ -226,14 +316,10 @@ function make_layout() {
     // add the callback to solve the L0 problem
     $(box).click(function(){
         let l0_candidates = Array.from(L0(examples));
-
-        let n_cands = Math.min(l0_candidates.length, 3)
-        for (var cand_id = 0; cand_id < n_cands; cand_id++){
-            let cand_shape = all_shapes[l0_candidates[cand_id]];
-            clear_grid_canvas("#cand_box_"+cand_id);
-            populate_empty_canvas("#cand_box_"+cand_id);
-            render_shape_list(cand_shape, "#cand_box_"+cand_id);
-        }
+        let sorted_cands = l0_candidates.sort(function(a,b){
+            return random_shape_order[a] - random_shape_order[b];
+        });
+        render_l_results(sorted_cands);
     });
     $(box).hover(function(){
         $(this).css("border-width", "thick");
@@ -251,18 +337,15 @@ function make_layout() {
     $(box).css("background-image", 'url(assets/robot.png)');
     // add the callback to solve the L0 problem
     $(box).click(function(){
-        let l0_candidates = L0(examples);
-        console.log("hi");
-        // console.log(S11(l0_candidates[2], [[[2,2],[2,0]]]));
-        let l1_candidates = L1(examples);
+        // let l1_candidates = L1(examples);
+        setTimeout(() => {
+            var l1_candidates = L1(examples);
+            render_l_results(l1_candidates);
+            $("#L1").css("background-image", 'url(assets/robot.png)');
 
-        let n_cands = Math.min(l1_candidates.length, 3)
-        for (var cand_id = 0; cand_id < n_cands; cand_id++){
-            let cand_shape = all_shapes[l1_candidates[cand_id]];
-            clear_grid_canvas("#cand_box_"+cand_id);
-            populate_empty_canvas("#cand_box_"+cand_id);
-            render_shape_list(cand_shape, "#cand_box_"+cand_id);
-        }
+        }, 100);
+        // thinking robot
+        $(box).css("background-image", 'url(assets/robot_thinking.png)');
     });
     $(box).hover(function(){
         $(this).css("border-width", "thick");
@@ -271,12 +354,8 @@ function make_layout() {
     });
     $("#control").append(box);
 
-
-
-
-
-
     // do the first render
+    new_problem();
     render_plant();
 };
 
