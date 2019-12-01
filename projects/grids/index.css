@@ -28,7 +28,8 @@
     font-family: Helvetica;
     height: 1vmin;
     width: 32vmin;
-    background-color : #ffffff;
+    background-color: transparent;
+    border-color: transparent;
     font-weight: bold;
 }
 .box.text.warning {

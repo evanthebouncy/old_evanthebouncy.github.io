@@ -142,7 +142,7 @@ function make_candidates(){
         // candidate text
         var box = document.createElement("div"); 
         box.id = "candidate_text_" + cand;
-        box.innerHTML = "candidate " + cand;
+        box.innerHTML = "candidate " + (cand+1);
         box.className = "box text small";
         box.style.top = "" + (OFFSETTOP - 2.3 + WW_SMOL * cand * 8) + "vmin";
         box.style.left = "" + (OFFSET4 + 0.1) + "vmin";
