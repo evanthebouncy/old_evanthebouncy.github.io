@@ -1,6 +1,9 @@
 // some helpers
 const add = (a, b) => a + b;
 
+// cache old results for undo purpose
+var solved_instances = {};
+
 // takes in said, turn to dict
 function said_to_dict(said){
     var ret = {};
@@ -91,6 +94,10 @@ function logS1(shape_id, utters){
 
 
 function L1(examples) {
+    let example_str = JSON.stringify(examples);
+    if (solved_instances[example_str] !== undefined){
+        return solved_instances[example_str]
+    }
     var utters = [];
     // examples to utterances
     Object.entries(examples).forEach(([key, value]) => {
@@ -103,7 +110,14 @@ function L1(examples) {
     let sorted_l0_cands = l0_candidates.sort(function(a,b){
         return random_shape_order[a] - random_shape_order[b];
     });
-    let subsample_candidates = l0_candidates;
+
+    // don't run pragmatic if too hard
+    if (sorted_l0_cands.length > 200) {
+        solved_instances[example_str] = sorted_l0_cands;
+        return sorted_l0_cands;
+    }
+
+    let subsample_candidates = sorted_l0_cands;
 
     var s1logprs = [];
     for (var j=0; j<subsample_candidates.length; j++){
@@ -117,7 +131,9 @@ function L1(examples) {
         return a[0] - b[0];
     });
     console.log(sorted_cands);
-    return sorted_cands.map(x => x[1]);
+    let ret = sorted_cands.map(x => x[1]);
+    solved_instances[example_str] = ret;
+    return ret;
 }
 
 

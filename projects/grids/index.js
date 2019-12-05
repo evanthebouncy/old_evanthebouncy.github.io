@@ -123,7 +123,7 @@ function make_target(){
 
 // the candidates
 function make_candidates(){
-    for (var cand=0; cand<3; cand++){
+    for (var cand=0; cand<2; cand++){
         for (var i=0; i<L; i+=1) {
             for (var j=0; j<L; j+=1) {
                 let coord_i = i;
@@ -142,7 +142,7 @@ function make_candidates(){
         // candidate text
         var box = document.createElement("div"); 
         box.id = "candidate_text_" + cand;
-        box.innerHTML = "candidate " + (cand+1);
+        box.innerHTML = cand == 0 ? "robot 1 thinks this " : "robot 2 thinks this";
         box.className = "box text small";
         box.style.top = "" + (OFFSETTOP - 2.3 + WW_SMOL * cand * 8) + "vmin";
         box.style.left = "" + (OFFSET4 + 0.1) + "vmin";
@@ -169,18 +169,17 @@ function make_candidates(){
 }
 
 // render listener results
-function render_l_results(l_candidates){
-    clear_candidate_border();
-    let n_cands = Math.min(l_candidates.length, 3)
-    for (var cand_id = 0; cand_id < n_cands; cand_id++){
-        let cand_shape = all_shapes[l_candidates[cand_id]];
-        clear_grid_canvas("#cand_box_"+cand_id);
-        populate_empty_canvas("#cand_box_"+cand_id);
-        render_shape_list(cand_shape, "#cand_box_"+cand_id);
-
-        if (l_candidates[cand_id] == target_id){
-            $("#candidate_highlight_"+cand_id).css("border-width", "5px");
-        }
+function render_l_results(l_candidates, cand_id){
+    if (l_candidates.length < 1) {
+        return;
+    }
+    let shape_id = l_candidates[0];
+    let cand_shape = all_shapes[shape_id];
+    clear_grid_canvas("#cand_box_"+cand_id);
+    populate_empty_canvas("#cand_box_"+cand_id);
+    render_shape_list(cand_shape, "#cand_box_"+cand_id);
+    if (shape_id == target_id){
+        $("#candidate_highlight_"+cand_id).css("border-width", "5px");
     }
 }
 
@@ -221,6 +220,11 @@ function make_working_grid(){
                         $("#warning_text").text("inconsistent examples!")
                     }
                 });
+                clear_candidate_border();
+                clear_grid_canvas("#cand_box_0");
+                clear_grid_canvas("#cand_box_1");
+                run_l0();
+                run_l1();
             });
 
         };
@@ -306,52 +310,22 @@ function make_layout() {
     $("#control").append(box);
 
 
-    // ask the L0 robot ===========================
+    // the L0 robot ===========================
     var box = document.createElement("div"); 
     box.className = "interact";
     box.id = "L0";
     box.style.top = "" + (OFFSETTOP + WW * 1.5) + "vmin";
     box.style.left = "" + (OFFSET3) + "vmin";
     $(box).css("background-image", 'url(assets/robot_0.png)');
-    // add the callback to solve the L0 problem
-    $(box).click(function(){
-        let l0_candidates = Array.from(L0(examples));
-        let sorted_cands = l0_candidates.sort(function(a,b){
-            return random_shape_order[a] - random_shape_order[b];
-        });
-        render_l_results(sorted_cands);
-    });
-    $(box).hover(function(){
-        $(this).css("border-width", "thick");
-    }, function(){
-        $(this).css("border-width", "thin");
-    });
     $("#control").append(box);
 
-    // ask the L1 robot ========================== 
+    // the L1 robot ========================== 
     var box = document.createElement("div"); 
     box.className = "interact";
     box.id = "L1";
     box.style.top = "" + (OFFSETTOP + WW * 3.5) + "vmin";
     box.style.left = "" + (OFFSET3) + "vmin";
     $(box).css("background-image", 'url(assets/robot.png)');
-    // add the callback to solve the L0 problem
-    $(box).click(function(){
-        // let l1_candidates = L1(examples);
-        setTimeout(() => {
-            var l1_candidates = L1(examples);
-            render_l_results(l1_candidates);
-            $("#L1").css("background-image", 'url(assets/robot.png)');
-
-        }, 100);
-        // thinking robot
-        $(box).css("background-image", 'url(assets/robot_thinking.png)');
-    });
-    $(box).hover(function(){
-        $(this).css("border-width", "thick");
-    }, function(){
-        $(this).css("border-width", "thin");
-    });
     $("#control").append(box);
 
     // do the first render
@@ -390,6 +364,26 @@ function render_plant(){
     });
 
 };
+
+function run_l0() {
+    let l0_candidates = Array.from(L0(examples));
+    let sorted_cands = l0_candidates.sort(function(a,b){
+        return random_shape_order[a] - random_shape_order[b];
+    });
+    render_l_results(sorted_cands, 0);
+}
+
+function run_l1() {
+    // let l1_candidates = L1(examples);
+    setTimeout(() => {
+        var l1_candidates = L1(examples);
+        render_l_results(l1_candidates, 1);
+        $("#L1").css("background-image", 'url(assets/robot.png)');
+
+    }, 100);
+    // thinking robot
+    $("#L1").css("background-image", 'url(assets/robot_thinking.png)');
+}
 
 $(document).ready(function(){
     make_layout(document.body);
