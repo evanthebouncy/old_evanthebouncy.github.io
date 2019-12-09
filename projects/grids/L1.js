@@ -107,23 +107,19 @@ function L1(examples) {
 
     let l0_candidates = Array.from(L0(examples));
     console.log("all l0 sol length ", l0_candidates.length);
-    let sorted_l0_cands = l0_candidates.sort(function(a,b){
+    let subsample_candidates = l0_candidates.sort(function(a,b){
         return random_shape_order[a] - random_shape_order[b];
     });
 
-    // don't run pragmatic if too hard
-    if (sorted_l0_cands.length > 200) {
-        solved_instances[example_str] = sorted_l0_cands;
-        return sorted_l0_cands;
-    }
-
-    let subsample_candidates = sorted_l0_cands;
-
+    let start_time = Date.now();
     var s1logprs = [];
     for (var j=0; j<subsample_candidates.length; j++){
         let s1logpr = logS1(subsample_candidates[j], utters);
         console.log(j, all_shapes[subsample_candidates[j]].length,s1logpr);
         s1logprs.push([-s1logpr, subsample_candidates[j]]);
+        if (Date.now() - start_time > 2000) {
+            break;
+        }
     }
     console.log(s1logprs);
         // console.log(S11(subsample_candidates[2], []));

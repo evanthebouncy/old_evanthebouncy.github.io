@@ -257,6 +257,8 @@ function make_layout() {
     // the candidates
     make_candidates();
 
+    // put down the 7 things to put down
+
     // the controls for shapes
     for (var i=0; i<3; i++){
         var box = document.createElement("div"); 
