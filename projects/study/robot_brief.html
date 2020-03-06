@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Robot Brief</title>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        Robot Briefing Hello
+        <div id="robot_text"></div>
+        <a id="experiment_link">hi</a>
+<script>
+$(document).ready(function(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let user_id =   parseInt(urlParams.get('user_id'));
+    let trial_id =   parseInt(urlParams.get('trial_id'));
+    let robot_id =  urlParams.get('robot_order').split(',').map(x => parseInt(x))[trial_id];
+    console.log(`user id ${user_id}, robot id ${robot_id}`);
+    $("#experiment_link").html(`experiment with robot ${robot_id}`);
+    $("#experiment_link").attr('href', `problem.html${queryString}`);
+
+
+    if (robot_id == 0) {
+        $("#robot_text").html(`hello robot ${robot_id} PUT COUNTER EXAMPLES`);
+        } else {
+        $("#robot_text").html(`hello robot ${robot_id} CORNERS BOUNDARYS ENTERIOR`);
+    }
+});
+</script>
+
+    </body>
+</html>
+
