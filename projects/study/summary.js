@@ -89,7 +89,7 @@ $(document).ready(function(){
 
         $("#result_white").html(`On the WHITE robot, you used ${user_white.toString().slice(0,5)} examples on average, against an overall average of ${overall_white.toString().slice(0,5)}`);
         $("#result_blue").html(`On the BLUE robot, you used ${user_blue.toString().slice(0,5)} examples on average, against an overall average of ${overall_blue.toString().slice(0,5)}`);
-        $("#result_code").html(`Your MTurk code is ${user_id}`);
+        $("#result_code").html(`Your completion code is ${user_id}`);
         // toggle displays
         $("#exit_survey").css("display", "none");
         $("#result").css("display", "unset");
