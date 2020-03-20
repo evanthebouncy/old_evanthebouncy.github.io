@@ -283,34 +283,25 @@ function render_l_results(l_candidates, cand_id){
     render_shape_list(cand_shape, "#cand_box_"+cand_id);
     if (shape_id == target_ids[problem_id]){
         $("#candidate_highlight_"+cand_id).css("border-width", "5px");
-
         console.log("solved");
-        // // register to firebase
-        // // var ref = fbase.ref('${user_id}/');
-        // let date_str = new Date().toISOString().slice(0,10);
-
-        // let ref_loc = `${experiment_batch}/${user_id}/data`;
-        // console.log(ref_loc);
-
-        // var ref = fbase.ref(ref_loc).push();
-        // console.log(ref);
-        // let to_put = {
-        //     'problem_id' : problem_id,
-        //     'target_id' : target_ids[problem_id],
-        //     'robot_id'  : robot_id,
-        //     'examples'  : examples,
-        //     'examples_used' : Object.keys(examples).length,
-        // }
-        // ref.once("value", function(snapshot) {
-        //     ref.set(to_put);
-        // });
-
-        console.log("what");
         make_next_button();
 
     } else {
         $("#NEXT").remove();
     }
+}
+
+function highlight(highlight_obj, base_w){
+    highlight_obj.css("width", `${base_w-1}vmin`);
+    highlight_obj.css("height", `${base_w-1}vmin`);
+    highlight_obj.css("border-width", "thick");
+    highlight_obj.css("border-color", "blue");
+}
+function de_highlight(highlight_obj, base_w){
+    highlight_obj.css("width", `${base_w}vmin`);
+    highlight_obj.css("height", `${base_w}vmin`);
+    highlight_obj.css("border-width", "thin");
+    highlight_obj.css("border-color", "white");
 }
 
 // the working grid
@@ -324,15 +315,16 @@ function make_working_grid(){
             box.className = "box";
             box.style.top = "" + (i*WW + OFFSETTOP) + "vmin";
             box.style.left = "" + (j*WW + OFFSET2) + "vmin";
+            // set up hover function to highlight / de-highlight current cell
             $(box).hover(function(){
-                $(`#cand_box_0${coord_i}${coord_j}`).css("border-width", "thick");
-                $(`#cand_box_1${coord_i}${coord_j}`).css("border-width", "thick");
-                $(`#target_box_${coord_i}${coord_j}`).css("border-width", "thick");
+                highlight($(`#cand_box_0${coord_i}${coord_j}`), WW_SMOL);
+                highlight($(`#cand_box_1${coord_i}${coord_j}`), WW_SMOL);
+                highlight($(`#target_box_${coord_i}${coord_j}`), WW_SMOL);
                 $(this).css("border-width", "thick");
             }, function(){
-                $(`#cand_box_0${coord_i}${coord_j}`).css("border-width", "thin");
-                $(`#cand_box_1${coord_i}${coord_j}`).css("border-width", "thin");
-                $(`#target_box_${coord_i}${coord_j}`).css("border-width", "thin");
+                de_highlight($(`#cand_box_0${coord_i}${coord_j}`), WW_SMOL);
+                de_highlight($(`#cand_box_1${coord_i}${coord_j}`), WW_SMOL);
+                de_highlight($(`#target_box_${coord_i}${coord_j}`), WW_SMOL);
                 $(this).css("border-width", "thin");
             });
             $("#grid").append(box);
