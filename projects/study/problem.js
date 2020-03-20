@@ -165,6 +165,26 @@ function make_next_button() {
     });
 
     $(box).click(function(){
+        // register to firebase
+        // var ref = fbase.ref('${user_id}/');
+        let date_str = new Date().toISOString().slice(0,10);
+
+        let ref_loc = `${experiment_batch}/${user_id}/data`;
+        console.log(ref_loc);
+
+        var ref = fbase.ref(ref_loc).push();
+        console.log(ref);
+        let to_put = {
+            'problem_id' : problem_id,
+            'target_id' : target_ids[problem_id],
+            'robot_id'  : robot_id,
+            'examples'  : examples,
+            'examples_used' : Object.keys(examples).length,
+        }
+        ref.once("value", function(snapshot) {
+            ref.set(to_put);
+        });
+
         problem_id += 1;
         if (target_ids.length == problem_id) {
             if (trial_id == 0) {
@@ -265,25 +285,25 @@ function render_l_results(l_candidates, cand_id){
         $("#candidate_highlight_"+cand_id).css("border-width", "5px");
 
         console.log("solved");
-        // register to firebase
-        // var ref = fbase.ref('${user_id}/');
-        let date_str = new Date().toISOString().slice(0,10);
+        // // register to firebase
+        // // var ref = fbase.ref('${user_id}/');
+        // let date_str = new Date().toISOString().slice(0,10);
 
-        let ref_loc = `${experiment_batch}/${user_id}/data`;
-        console.log(ref_loc);
+        // let ref_loc = `${experiment_batch}/${user_id}/data`;
+        // console.log(ref_loc);
 
-        var ref = fbase.ref(ref_loc).push();
-        console.log(ref);
-        let to_put = {
-            'problem_id' : problem_id,
-            'target_id' : target_ids[problem_id],
-            'robot_id'  : robot_id,
-            'examples'  : examples,
-            'examples_used' : Object.keys(examples).length,
-        }
-        ref.once("value", function(snapshot) {
-            ref.set(to_put);
-        });
+        // var ref = fbase.ref(ref_loc).push();
+        // console.log(ref);
+        // let to_put = {
+        //     'problem_id' : problem_id,
+        //     'target_id' : target_ids[problem_id],
+        //     'robot_id'  : robot_id,
+        //     'examples'  : examples,
+        //     'examples_used' : Object.keys(examples).length,
+        // }
+        // ref.once("value", function(snapshot) {
+        //     ref.set(to_put);
+        // });
 
         console.log("what");
         make_next_button();
