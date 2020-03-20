@@ -8,8 +8,169 @@
         <script src="index.js"></script>
     </head>
     <body>
-        <div>
-            <a id="start">S T A R T</a>
+
+        <div id="page1" style="display:unset;">
+            <div>
+                <h1><center> welcome to our study! </center></h1>
+
+                <h3><center> IMPORTANT! This study can ONLY run on a desktop/laptop. </center><h3>
+
+                <p style="margin-left: 20%; margin-right : 20%; text-align: justify;"> 
+                In this study you will communicate with robots using symbols. <br>
+
+                Your task is to use symbols efficiently <br>
+
+                In the end of the session we will ask you a few unrelated demographic questions. <br>
+
+                The study is expected to take 20 minutes <br>
+
+                Thanks for participating! <br>
+
+                Informed Consent
+                By answering the following questions, you are participating in a study performed by cognitive scientists in the MIT Department of Brain and Cognitive Science. If you have questions about this research, please contact Tomer Ullman at tomeru@mit.edu. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal identifying information about you. By clicking 'I AGREE' you indicate your consent to participate in this study.
+                </p>
+            </div>
+            <div style="margin-left: 20%; margin-right : 20%;   display: flex;
+                  align-items: center;
+                  justify-content: center;">
+                <button id="agree" style="font-size: 20px;">I AGREE </button>
+            </div>
         </div>
+
+        <div id="task_description" style="display:none">
+            <h1><center> Task Description </center></h1>
+            
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
+                Two robots have visited us from outer space (white robot and blue robot) and they are excited to communicate with us.
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/all_robots.png" alt="Two Robots" width="200" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
+                Scientists discoverd that the robots communicate by building grid-like patterns. Below are 3 of such patterns.
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/example_patterns.png" alt="Three Example Patterns" width="900" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                In this experiment, you will communicate by building these kinds of patterns on a 7x7 scratch pad.
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/scratch_pad.png" alt="7x7 Scratch Pad" width="240" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                On each coordinate of the scratch pad, you can put down an example of one of 3 symbols: pig, chicken, and pebble.
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/all_shapes.png" alt="Three Symbols" width="240" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                Each pig or chicken can be one of 3 colors: red, green, and blue. Pebbles are always white.
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/all_colors.png" alt="Three Colors" width="240" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                After you pick the symbol and its color, you can place it on the scratch-pad. In case you make a mistake, you can click on the example again to remove it.
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/place_ex.png" alt="Three Colors" width="600" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                Building the entire pattern at once can be tedius, as it requires 7x7=49 examples. Luckily, the robots are empathetic: They will try to guess what pattern you are trying to communicate based on the examples you've shown the scratch pad so far. 
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/comm_task.png" alt="Communication Task" width="700" style="center;">
+            </div>
+
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                You will communicate with the robots, one at a time. With each robot, you will communicate a total of 12 patterns. Your goal is to have the robots correctly guess your pattern while using as few examples as possible. 
+            </h3>
+
+            <br>
+            <br>
+
+            <!-- QUIZ SECTION -->
+            <h2 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
+                Quiz 
+            </h2>
+
+            <!-- Q1 -->
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                What is the size of the patterns / scratch-pad ? 
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <form action="">
+                  <input type="radio" name="gridsize" value="36"> 36<br>
+                  <input type="radio" name="gridsize" value="49"> 49<br>
+                  <input type="radio" name="gridsize" value="100"> 100<br>
+                </form>
+            </div>
+
+            <!-- Q2 -->
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                Can the pebbles be blue?
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <form action="">
+                  <input type="radio" name="nnocolor" value="0"> yes<br>
+                  <input type="radio" name="nnocolor" value="1"> no<br>
+                </form>
+            </div>
+
+            <!-- Q3 -->
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+                What's the the goal of this experiment? 
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <form action="">
+                  <input type="radio" name="exptask" value="fastest"> Put the examples on the scratch pad as fast as possible the robot guess your pattern quickly <br>
+                  <input type="radio" name="exptask" value="other"> Fill the entire scratch pad starting from the upper-left corner to communicate perfectly <br>
+                  <input type="radio" name="exptask" value="fewest"> Put few, well-chosen examples on the scratch pad so the robot can guess your pattern correctly<br>
+                </form>
+            </div>
+
+            <br>
+            <br>
+
+            <div style="margin-left: 20%; margin-right : 20%;   display: flex;
+                  align-items: center;
+                  justify-content: center;">
+                <button id="check_answer" style="font-size: 20px;">Check Answers and Start</button>
+            </div>
+
+        </div>
+
+        <!--
+        <div>
+            <a style="margin-left: 20%; margin-right : 20%; text-align: justify;" id="start">S T A R T</a>
+        </div>
+        -->
     </body>
 </html>

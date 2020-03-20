@@ -32,6 +32,8 @@ var problem_id = -1;
 var target_ids;
 var robot_id;
 
+const experiment_batch = "batch_1";
+
 // clear a grid canvas
 function clear_grid_canvas(grid_canv_name){
     for (var i=0; i<L; i+=1) {
@@ -76,6 +78,12 @@ function new_problem(target_id, robot_id){
     // grab new target-id and clear examples
     const target = all_shapes[target_id];
     examples = {};
+
+    // render progress bar
+    $("#progress_bar").html(`pattern ${target_ids.findIndex(x => x == target_id) + 1} out of ${target_ids.length}`)
+    // clear the example used
+    $("#utterance_count").html(`examples used ${ Object.keys(examples).length}`);
+
     // clear all boxes with empty
     for (var jjj=0; jjj<3; jjj++){
         clear_grid_canvas("#cand_box_"+jjj);
@@ -196,7 +204,7 @@ function make_target(){
 
     var box = document.createElement("div"); 
     box.id = "target_text";
-    box.innerHTML = "target";
+    box.innerHTML = "communicate this";
     box.className = "box text";
     box.style.top = "" + OFFSETTEXTTOP + "vmin";
     box.style.left = "" + 10 + "vmin";
@@ -227,7 +235,7 @@ function make_candidates(robot_id){
     // candidate text
     var box = document.createElement("div"); 
     box.id = "candidate_text_" + cand;
-    box.innerHTML = cand == 0 ? "robot 1 thinks this " : "robot 2 thinks this";
+    box.innerHTML = cand == 0 ? "WHITE robot's guess " : "BLUE robot's guess";
     box.className = "box text small";
     box.style.top = "" + (OFFSETTOP - 2.3 + WW_SMOL * cand * 8) + "vmin";
     box.style.left = "" + (OFFSET4 + 0.1) + "vmin";
@@ -259,7 +267,9 @@ function render_l_results(l_candidates, cand_id){
         console.log("solved");
         // register to firebase
         // var ref = fbase.ref('${user_id}/');
-        let ref_loc = `${user_id}/`;
+        let date_str = new Date().toISOString().slice(0,10);
+
+        let ref_loc = `${experiment_batch}/${user_id}/data`;
         console.log(ref_loc);
 
         var ref = fbase.ref(ref_loc).push();
@@ -269,6 +279,7 @@ function render_l_results(l_candidates, cand_id){
             'target_id' : target_ids[problem_id],
             'robot_id'  : robot_id,
             'examples'  : examples,
+            'examples_used' : Object.keys(examples).length,
         }
         ref.once("value", function(snapshot) {
             ref.set(to_put);
@@ -294,8 +305,14 @@ function make_working_grid(){
             box.style.top = "" + (i*WW + OFFSETTOP) + "vmin";
             box.style.left = "" + (j*WW + OFFSET2) + "vmin";
             $(box).hover(function(){
+                $(`#cand_box_0${coord_i}${coord_j}`).css("border-width", "thick");
+                $(`#cand_box_1${coord_i}${coord_j}`).css("border-width", "thick");
+                $(`#target_box_${coord_i}${coord_j}`).css("border-width", "thick");
                 $(this).css("border-width", "thick");
             }, function(){
+                $(`#cand_box_0${coord_i}${coord_j}`).css("border-width", "thin");
+                $(`#cand_box_1${coord_i}${coord_j}`).css("border-width", "thin");
+                $(`#target_box_${coord_i}${coord_j}`).css("border-width", "thin");
                 $(this).css("border-width", "thin");
             });
             $("#grid").append(box);
@@ -319,6 +336,7 @@ function make_working_grid(){
                         $("#warning_text").text("inconsistent examples!")
                     }
                 });
+                $("#utterance_count").html(`examples used ${ Object.keys(examples).length}`);
                 clear_candidate_border();
                 clear_grid_canvas("#cand_box_0");
                 clear_grid_canvas("#cand_box_1");
@@ -335,7 +353,7 @@ function make_working_grid(){
     // working area text
     var box = document.createElement("div"); 
     box.id = "working_text";
-    box.innerHTML = "working area";
+    box.innerHTML = "scratch pad";
     box.className = "box text";
     box.style.top = "" + OFFSETTEXTTOP + "vmin";
     box.style.left = "" + OFFSET2 + "vmin";
@@ -351,8 +369,33 @@ function make_working_grid(){
     $("#grid").append(box);
 }
 
+// make the progress bar and utterance used text
+function make_progress() {
+    var box = document.createElement("div"); 
+    box.id = "progress_bar";
+    box.innerHTML = "pattern 1/1";
+    box.className = "box text";
+    box.style.top = "" + (OFFSETTOP + WW * 4) + "vmin";
+    box.style.left = "" + 10 + "vmin";
+    $("#grid").append(box);    
+}
+
+function make_utterance_count() {
+    var box = document.createElement("div"); 
+    box.id = "utterance_count";
+    box.innerHTML = "examples used 0";
+    box.className = "box text";
+    box.style.top = "" + (OFFSETTOP + WW * 5) + "vmin";
+    box.style.left = "" + 10 + "vmin";
+    $("#grid").append(box);    
+}
+    
 /* Creating the grid */
 function make_layout() {
+    // progress bar
+    make_progress();
+    // utterance count
+    make_utterance_count();
     // the target
     make_target();
     // the working grid
