@@ -1,4 +1,4 @@
-const experiment_batch = "batch_1";
+const experiment_batch = "batch_2";
 
 function get_white_blue(user_stat) {
     let stats = user_stat;

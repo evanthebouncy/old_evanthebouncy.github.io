@@ -31,8 +31,9 @@ var trial_id;
 var problem_id = -1;
 var target_ids;
 var robot_id;
+var disambiguous_size = 0;
 
-const experiment_batch = "batch_1";
+const experiment_batch = "batch_2";
 
 // clear a grid canvas
 function clear_grid_canvas(grid_canv_name){
@@ -165,32 +166,14 @@ function make_next_button() {
     });
 
     $(box).click(function(){
-        // register to firebase
-        // var ref = fbase.ref('${user_id}/');
-        let date_str = new Date().toISOString().slice(0,10);
 
-        let ref_loc = `${experiment_batch}/${user_id}/data`;
-        console.log(ref_loc);
-
-        var ref = fbase.ref(ref_loc).push();
-        console.log(ref);
-        let to_put = {
-            'problem_id' : problem_id,
-            'target_id' : target_ids[problem_id],
-            'robot_id'  : robot_id,
-            'examples'  : examples,
-            'examples_used' : Object.keys(examples).length,
-        }
-        ref.once("value", function(snapshot) {
-            ref.set(to_put);
-        });
 
         problem_id += 1;
         if (target_ids.length == problem_id) {
             if (trial_id == 0) {
                 const queryString = window.location.search;
                 const queryStringNew = queryString.replace("trial_id=0","trial_id=1");
-                 window.location = `robot_brief.html${queryStringNew}`
+                window.location = `robot_brief.html${queryStringNew}`
             }
             if (trial_id == 1) {
                 const queryString = window.location.search;
@@ -282,8 +265,29 @@ function render_l_results(l_candidates, cand_id){
     populate_empty_canvas("#cand_box_"+cand_id);
     render_shape_list(cand_shape, "#cand_box_"+cand_id);
     if (shape_id == target_ids[problem_id]){
+        disambiguous_size = l_candidates.length;
         $("#candidate_highlight_"+cand_id).css("border-width", "5px");
         console.log("solved");
+
+        // register to firebase
+        let ref_loc = `${experiment_batch}/${user_id}/data/robot_${robot_id}_problem_${problem_id}`;
+        console.log(ref_loc);
+        // var ref = fbase.ref(ref_loc).push();
+        var ref = fbase.ref(ref_loc);
+        console.log(ref);
+        let to_put = {
+            'problem_id' : problem_id,
+            'target_id' : target_ids[problem_id],
+            'robot_id'  : robot_id,
+            'examples'  : examples,
+            'examples_used' : Object.keys(examples).length,
+            'disambiguous_size' : disambiguous_size,
+        }
+        ref.once("value", function(snapshot) {
+            ref.set(to_put);
+        });
+
+
         make_next_button();
 
     } else {
