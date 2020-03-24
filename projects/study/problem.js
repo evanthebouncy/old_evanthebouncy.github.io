@@ -276,7 +276,7 @@ function render_l_results(l_candidates, cand_id){
         var ref = fbase.ref(ref_loc);
         console.log(ref);
         let to_put = {
-            'trial_id' : trial_id;
+            'trial_id' : trial_id,
             'problem_id' : problem_id,
             'target_id' : target_ids[problem_id],
             'robot_id'  : robot_id,
