@@ -32,6 +32,16 @@
     border-color: transparent;
     font-weight: bold;
 }
+
+.box.instructions {
+    font-size: large;
+    font-family: Helvetica;
+    height: 1vmin;
+    width: 60vmin;
+    background-color: transparent;
+    border-color: transparent;
+}
+
 .box.text.warning {
     color : red;
 }

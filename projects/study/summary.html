@@ -5,6 +5,12 @@
         <link rel="stylesheet" href="index.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<script
+  src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
+  integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
+  crossorigin="anonymous"></script>
+
+
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
@@ -18,7 +24,7 @@
         <div id="exit_survey">
 
             <h1 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Optional Survey
+                Survey
             </h1>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
@@ -33,12 +39,8 @@
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
-                <form action="">
-                  <input type="radio" name="qage" value="<30"> less than 30 <br>
-                  <input type="radio" name="qage" value="30-39"> 30 to 39 <br>
-                  <input type="radio" name="qage" value="40-49"> 40 to 49 <br>
-                  <input type="radio" name="qage" value=">50"> greater than 50 <br>
-                </form>
+                  <input type="range" min="18" max="100" value="30" class="slider" id="age_range" style="width:30%;">
+                  <p>Age: <span id="qage">30</span></p>
             </div>
 
             <!-- Q2 -->
@@ -57,7 +59,7 @@
 
             <!-- Q3 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Which robot was it EASIER for you to communicate with?
+                Which robot was EASIER to communicate with?
             </h3>
             <div style="display: flex;
               align-items: center;
@@ -71,22 +73,22 @@
 
             <!-- Q4 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Describe briefly your strategy in communicating with the WHITE robot
+                Briefly describe your strategy in communicating with the WHITE robot
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
-                <textarea id="white_strat" rows="10" cols="50"> </textarea>
+                <textarea id="white_strat" rows="10" cols="50"></textarea>
             </div>
 
             <!-- Q4 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Describe briefly your strategy in communicating with the BLUE robot
+                Briefly describe your strategy in communicating with the BLUE robot
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
-                <textarea id="blue_strat" rows="10" cols="50"> </textarea>
+                <textarea id="blue_strat" rows="10" cols="50"></textarea>
             </div>
 
             <br><br>
@@ -94,7 +96,7 @@
             <div style="margin-left: 20%; margin-right : 20%;   display: flex;
                   align-items: center;
                   justify-content: center;">
-                <button id="submit_and_check" style="font-size: 20px;">Submit Survey and Check Result</button>
+                <button id="submit_and_check" style="font-size: 20px;">Submit</button>
             </div>        
 
         </div>
@@ -114,7 +116,7 @@
             </h3>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
-                Thank you for participating 
+                Thank you for participating !
             </h3>
             <div style="display: flex;
               align-items: center;

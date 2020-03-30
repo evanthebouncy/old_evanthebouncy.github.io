@@ -25,6 +25,10 @@ for (var shapid = 0; shapid < all_shapes.length; shapid++){
 
 // to report to the server
 var examples = {};
+var all_examples = [];
+
+var start_time = 0;
+
 var user_id;
 var trial_id;
 
@@ -33,7 +37,7 @@ var target_ids;
 var robot_id;
 var disambiguous_size = 0;
 
-const experiment_batch = "batch_2";
+const experiment_batch = "batch_3";
 
 // clear a grid canvas
 function clear_grid_canvas(grid_canv_name){
@@ -79,11 +83,14 @@ function new_problem(target_id, robot_id){
     // grab new target-id and clear examples
     const target = all_shapes[target_id];
     examples = {};
+    all_examples = [];
+    
+    start_time = new Date().getTime();
 
     // render progress bar
     $("#progress_bar").html(`pattern ${target_ids.findIndex(x => x == target_id) + 1} out of ${target_ids.length}`)
     // clear the example used
-    $("#utterance_count").html(`examples used ${ Object.keys(examples).length}`);
+    $("#utterance_count").html(`symbols used ${ Object.keys(examples).length}`);
 
     // clear all boxes with empty
     for (var jjj=0; jjj<3; jjj++){
@@ -156,8 +163,8 @@ function make_next_button() {
     var box = document.createElement("div"); 
     box.className = "interact";
     box.id = "NEXT";
-    box.style.top = "" + (OFFSETTOP + WW * 2.5) + "vmin";
-    box.style.left = "" + (OFFSET5) + "vmin";
+    box.style.top = "" + (OFFSETTOP + WW * 8) + "vmin";
+    box.style.left = "" + (OFFSET4) + "vmin";
     $(box).css("background-image", 'url(assets/forward.png)');
     $(box).hover(function(){
         $(this).css("border-width", "thick");
@@ -207,7 +214,7 @@ function make_target(){
 
     var box = document.createElement("div"); 
     box.id = "target_text";
-    box.innerHTML = "communicate this";
+    //box.innerHTML = "communicate this";
     box.className = "box text";
     box.style.top = "" + OFFSETTEXTTOP + "vmin";
     box.style.left = "" + 10 + "vmin";
@@ -280,7 +287,10 @@ function render_l_results(l_candidates, cand_id){
             'problem_id' : problem_id,
             'target_id' : target_ids[problem_id],
             'robot_id'  : robot_id,
+            'start_time' : start_time,
+            'total_time' : new Date().getTime() - start_time,
             'examples'  : examples,
+            'all_examples' : all_examples,
             'examples_used' : Object.keys(examples).length,
             'disambiguous_size' : disambiguous_size,
         }
@@ -336,13 +346,16 @@ function make_working_grid(){
 
             // on click update my background to match
             $(box).click(function(){
+                const rel_time = new Date().getTime() - start_time;
                 if (examples[[coord_i, coord_j]] == undefined){
                     // the empty tile should have a canonicalized 'coloridx' of 0
                     let color_idx_empty_safe = shape_idx == 2 ? 0 : color_idx;
                     examples[[coord_i, coord_j]] = [shape_idx, color_idx_empty_safe];
+                    all_examples.push(`${[coord_i,coord_j]} ${[shape_idx, color_idx_empty_safe]} ${rel_time}`)
                     render_plant();
                 } else {
                     delete examples[[coord_i, coord_j]];
+                    all_examples.push(`${[coord_i,coord_j]} delete ${rel_time}`)
                     render_plant();
                 }
 
@@ -353,7 +366,7 @@ function make_working_grid(){
                         $("#warning_text").text("inconsistent examples!")
                     }
                 });
-                $("#utterance_count").html(`examples used ${ Object.keys(examples).length}`);
+                $("#utterance_count").html(`symbols used ${ Object.keys(examples).length}`);
                 clear_candidate_border();
                 clear_grid_canvas("#cand_box_0");
                 clear_grid_canvas("#cand_box_1");
@@ -370,7 +383,7 @@ function make_working_grid(){
     // working area text
     var box = document.createElement("div"); 
     box.id = "working_text";
-    box.innerHTML = "scratch pad";
+    box.innerHTML = "your grid";
     box.className = "box text";
     box.style.top = "" + OFFSETTEXTTOP + "vmin";
     box.style.left = "" + OFFSET2 + "vmin";
@@ -400,7 +413,7 @@ function make_progress() {
 function make_utterance_count() {
     var box = document.createElement("div"); 
     box.id = "utterance_count";
-    box.innerHTML = "examples used 0";
+    box.innerHTML = "symbols used 0";
     box.className = "box text";
     box.style.top = "" + (OFFSETTOP + WW * 5) + "vmin";
     box.style.left = "" + 10 + "vmin";
@@ -420,7 +433,7 @@ function make_layout() {
     // the candidate result text only
     var box = document.createElement("div"); 
     box.id = "result_text";
-    box.innerHTML = "results";
+    // box.innerHTML = "results";
     box.className = "box text";
     box.style.top = "" + OFFSETTEXTTOP + "vmin";
     box.style.left = "" + OFFSET4 + "vmin";

@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        <title>Bien Venido :D</title>
+        <title>Experiment</title>
+        <!--
         <link rel="stylesheet" href="index.css">
+        -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <script src="index.js"></script>
@@ -13,22 +15,23 @@
             <div>
                 <h1><center> welcome to our study! </center></h1>
 
-                <h3><center> IMPORTANT! This study can ONLY run on a desktop/laptop. </center><h3>
+                <h3><center> IMPORTANT! This study can ONLY run on a desktop/laptop </center><h3>
 
-                <p style="margin-left: 20%; margin-right : 20%; text-align: justify;"> 
-                In this study you will communicate with robots using symbols. <br>
+                <p style="margin-left: 20%; margin-right : 20%; text-align: center; line-height: 2.0; "> 
+                In this study you will communicate with robots using symbols <br>
 
-                Your task is to use symbols efficiently <br>
+                Please try to use as few symbols as possible <br>
 
-                In the end of the session we will ask you a few unrelated demographic questions. <br>
+                In the end of the session we will ask you a few unrelated demographic questions <br>
 
                 The study is expected to take 20 minutes <br>
 
                 Thanks for participating! <br>
-
-                Informed Consent
-                By answering the following questions, you are participating in a study performed by cognitive scientists in the MIT Department of Brain and Cognitive Science. If you have questions about this research, please contact Tomer Ullman at tomeru@mit.edu. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal identifying information about you. By clicking 'I AGREE' you indicate your consent to participate in this study.
                 </p>
+                <div style="margin-left: 30%; margin-right : 30%; text-align: justify; font-size: small;">
+                Informed Consent
+                By answering the following questions, you are participating in a study performed by cognitive scientists in the MIT Department of Brain and Cognitive Science. If you have questions about this research, please contact Yewen Pu at yewenpu@mit.edu. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal identifying information about you. By clicking 'I AGREE' you indicate your consent to participate in this study.
+                </div>
             </div>
             <div style="margin-left: 20%; margin-right : 20%;   display: flex;
                   align-items: center;
@@ -38,10 +41,10 @@
         </div>
 
         <div id="task_description" style="display:none">
-            <h1><center> Task Description </center></h1>
+            <h1><center> Instructions </center></h1>
             
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
-                Two robots have visited us from outer space (white robot and blue robot) and they are excited to communicate with us.
+                Two robots: the WHITE robot and the BLUE robot, have visited us from outer space. They are excited to communicate with us.
             </h3>
             <div style="display: flex;
               align-items: center;
@@ -50,7 +53,7 @@
             </div>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
-                Scientists discoverd that the robots communicate by building grid-like patterns. Below are 3 of such patterns.
+                The robots think differently, but both communicate by building 7x7 grid patterns. For example:
             </h3>
             <div style="display: flex;
               align-items: center;
@@ -59,34 +62,16 @@
             </div>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                In this experiment, you will communicate by building these kinds of patterns on a 7x7 scratch pad.
+                Your task is to get robots to guess the pattern, by showing them an incomplete grid
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
-                <img src="assets/scratch_pad.png" alt="7x7 Scratch Pad" width="240" style="center;">
+                <img src="assets/comm_task.png" alt="Communication Task" width="700" style="center;">
             </div>
-
+            
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                On each coordinate of the scratch pad, you can put down an example of one of 3 symbols: pig, chicken, and pebble.
-            </h3>
-            <div style="display: flex;
-              align-items: center;
-              justify-content: center;">
-                <img src="assets/all_shapes.png" alt="Three Symbols" width="240" style="center;">
-            </div>
-
-            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Each pig or chicken can be one of 3 colors: red, green, and blue. Pebbles are always white.
-            </h3>
-            <div style="display: flex;
-              align-items: center;
-              justify-content: center;">
-                <img src="assets/all_colors.png" alt="Three Colors" width="240" style="center;">
-            </div>
-
-            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                After you pick the symbol and its color, you can place it on the scratch-pad. In case you make a mistake, you can click on the example again to remove it.
+                Pick a symbol, its color, and place it on your grid. If you make a mistake, click on the symbol again to remove it.
             </h3>
             <div style="display: flex;
               align-items: center;
@@ -95,16 +80,25 @@
             </div>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Building the entire pattern at once can be tedius, as it requires 7x7=49 examples. Luckily, the robots are empathetic: They will try to guess what pattern you are trying to communicate based on the examples you've shown the scratch pad so far. 
+                There are 3 symbols: chicken, pig, and pebble. There are 3 colors: red, green, and blue. Pebbles are always white.
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
-                <img src="assets/comm_task.png" alt="Communication Task" width="700" style="center;">
+                <img src="assets/all_shapes.png" alt="Three Symbols" width="240" style="center;">
+            </div>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/all_colors.png" alt="Three Colors" width="240" style="center;">
             </div>
 
+
+
+            
+
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                You will communicate with the robots, one at a time. With each robot, you will communicate a total of 12 patterns. Your goal is to have the robots correctly guess your pattern while using as few examples as possible. 
+              Your task is to have the robots correctly guess your pattern while using as few symbols as possible. 
             </h3>
 
             <br>
@@ -117,7 +111,7 @@
 
             <!-- Q1 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                What is the size of the patterns / scratch-pad ? 
+                What is the size of the patterns / grid ? 
             </h3>
             <div style="display: flex;
               align-items: center;
@@ -150,9 +144,9 @@
               align-items: center;
               justify-content: center;">
                 <form action="">
-                  <input type="radio" name="exptask" value="fastest"> Put the examples on the scratch pad as fast as possible the robot guess your pattern quickly <br>
-                  <input type="radio" name="exptask" value="other"> Fill the entire scratch pad starting from the upper-left corner to communicate perfectly <br>
-                  <input type="radio" name="exptask" value="fewest"> Put few, well-chosen examples on the scratch pad so the robot can guess your pattern correctly<br>
+                  <input type="radio" name="exptask" value="fastest"> Put the symbols on the grid as fast as possible the robot guess your pattern quickly <br>
+                  <input type="radio" name="exptask" value="other"> Fill the entire grid starting from the upper-left corner to communicate perfectly <br>
+                  <input type="radio" name="exptask" value="fewest"> Put few, well-chosen symbols on the grid so the robot can guess your pattern correctly<br>
                 </form>
             </div>
 
@@ -162,7 +156,7 @@
             <div style="margin-left: 20%; margin-right : 20%;   display: flex;
                   align-items: center;
                   justify-content: center;">
-                <button id="check_answer" style="font-size: 20px;">Check Answers and Start</button>
+                <button id="check_answer" style="font-size: 20px;">Check Answers and Start Practice</button>
             </div>
 
         </div>
