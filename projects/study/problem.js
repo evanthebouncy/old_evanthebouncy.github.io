@@ -26,6 +26,7 @@ for (var shapid = 0; shapid < all_shapes.length; shapid++){
 // to report to the server
 var examples = {};
 var all_examples = [];
+var all_robot_times = [];
 
 var start_time = 0;
 
@@ -37,7 +38,8 @@ var target_ids;
 var robot_id;
 var disambiguous_size = 0;
 
-const experiment_batch = "batch_3";
+//const experiment_batch = "batch_3";
+const experiment_batch = "batch_4";
 
 // clear a grid canvas
 function clear_grid_canvas(grid_canv_name){
@@ -84,7 +86,8 @@ function new_problem(target_id, robot_id){
     const target = all_shapes[target_id];
     examples = {};
     all_examples = [];
-    
+    all_robot_times = [];
+
     start_time = new Date().getTime();
 
     // render progress bar
@@ -291,6 +294,7 @@ function render_l_results(l_candidates, cand_id){
             'total_time' : new Date().getTime() - start_time,
             'examples'  : examples,
             'all_examples' : all_examples,
+            'all_robot_times' : all_robot_times,
             'examples_used' : Object.keys(examples).length,
             'disambiguous_size' : disambiguous_size,
         }
@@ -526,23 +530,47 @@ function render_plant(){
 
 };
 
+// function run_l0() {
+//     let l0_candidates = Array.from(L0(examples));
+//     let sorted_cands = l0_candidates.sort(function(a,b){
+//         return random_shape_order[a] - random_shape_order[b];
+//     });
+//     render_l_results(sorted_cands, 0);
+// }
 function run_l0() {
-    let l0_candidates = Array.from(L0(examples));
-    let sorted_cands = l0_candidates.sort(function(a,b){
-        return random_shape_order[a] - random_shape_order[b];
-    });
-    render_l_results(sorted_cands, 0);
+    // let l1_candidates = L1(examples);
+    setTimeout(() => {
+
+        // make timing consistent
+        let robot_start_time = new Date().getTime();
+        let l0_candidates = Array.from(L0(examples));
+        all_robot_times.push(new Date().getTime() - robot_start_time);
+
+        // var l1_candidates = L1(examples);
+        let sorted_cands = l0_candidates.sort(function(a,b){
+            return random_shape_order[a] - random_shape_order[b];
+        });
+        render_l_results(sorted_cands, 0);   
+        $("#L0").css("background-image", 'url(assets/robot_0.png)');
+
+    }, 500);
+    // thinking robot
+    $("#L0").css("background-image", 'url(assets/robot_0_thinking.png)');
 }
 
 function run_l1() {
     // let l1_candidates = L1(examples);
     setTimeout(() => {
+        // make timing consistent
+        let robot_start_time = new Date().getTime();
         var l1_candidates = L1(examples);
+        all_robot_times.push(new Date().getTime() - robot_start_time);
+        
         render_l_results(l1_candidates, 1);
         $("#L1").css("background-image", 'url(assets/robot.png)');
 
-    }, 100);
-    // thinking robot
+    }, 500);
+    //thinking robot
     $("#L1").css("background-image", 'url(assets/robot_thinking.png)');
 }
 
