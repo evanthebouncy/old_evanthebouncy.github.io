@@ -1,5 +1,3 @@
-const experiment_batch = "batch_4";
-
 function get_white_blue(user_stat) {
     let stats = user_stat;
     var robot_white_tot = 0;

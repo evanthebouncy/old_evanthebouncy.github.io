@@ -38,9 +38,6 @@ var target_ids;
 var robot_id;
 var disambiguous_size = 0;
 
-//const experiment_batch = "batch_3";
-const experiment_batch = "batch_4";
-
 // clear a grid canvas
 function clear_grid_canvas(grid_canv_name){
     for (var i=0; i<L; i+=1) {

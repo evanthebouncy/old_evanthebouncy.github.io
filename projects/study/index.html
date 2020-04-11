@@ -6,11 +6,20 @@
         <link rel="stylesheet" href="index.css">
         -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
 
+        <script src="fire.js"></script>
+        
+        <script src="batch_count.js"></script>
         <script src="index.js"></script>
     </head>
     <body>
 
+        <!-- The Consent Form -->
         <div id="page1" style="display:unset;">
             <div>
                 <h1><center> welcome to our study! </center></h1>
@@ -40,6 +49,7 @@
             </div>
         </div>
 
+        <!-- The Instruction -->
         <div id="task_description" style="display:none">
             <h1><center> Instructions </center></h1>
             
@@ -62,7 +72,7 @@
             </div>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Your task is to get robots to guess the pattern, by showing them an incomplete grid
+                Your task is to get robots to guess these patterns, by showing them an incomplete grid.
             </h3>
             <div style="display: flex;
               align-items: center;
@@ -93,60 +103,76 @@
                 <img src="assets/all_colors.png" alt="Three Colors" width="240" style="center;">
             </div>
 
-
-
-            
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
+              Every time you add a new symbol, the robots will try to guess the complete pattern based the symbols so far. <br>
+            </h3>
+            <div style="display: flex;
+              align-items: center;
+              justify-content: center;">
+                <img src="assets/task_cycle.png" alt="task cycle" width="900" style="center;">
+            </div>
 
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-              Your task is to have the robots correctly guess your pattern while using as few symbols as possible. 
+              Your task is to help a robot guess your pattern, while using as few symbols as possible. 
             </h3>
 
-            <br>
-            <br>
+            <!-- QUIZ Button -->
+            <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
+                Next we will ask a few questions to check your understanding of the instructions
+            </h3>
+            <div style="margin-left: 20%; margin-right : 20%;   display: flex;
+                  align-items: center;
+                  justify-content: center;">
+                <button id="go_quiz" style="font-size: 20px;"> Start Quiz </button>
+            </div>
+        </div>
 
-            <!-- QUIZ SECTION -->
-            <h2 style="margin-left: 20%; margin-right : 20%; text-align: center;"> 
-                Quiz 
-            </h2>
+
+        <!-- The Quiz -->
+        <div id="quiz_page" style="display:none">
 
             <!-- Q1 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                What is the size of the patterns / grid ? 
+                In this study my task is to:
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
                 <form action="">
-                  <input type="radio" name="gridsize" value="36"> 36<br>
-                  <input type="radio" name="gridsize" value="49"> 49<br>
-                  <input type="radio" name="gridsize" value="100"> 100<br>
+                  <input type="radio" name="exptask" value="fastest"> Put lots of symbols on the grid as fast as possible <br>
+                  <input type="radio" name="exptask" value="other"> Systematically replicate my pattern by filling all locations on my grid <br>
+                  <input type="radio" name="exptask" value="fewest"> Choose a few strategically placed symbols to guide the robot's guess <br>                 
+                  <input type="radio" name="exptask" value="random"> Place the symbols at random to try my luck with the robots <br>
                 </form>
             </div>
 
             <!-- Q2 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                Can the pebbles be blue?
+                How many symbols should I use to communicate my pattern:
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
                 <form action="">
-                  <input type="radio" name="nnocolor" value="0"> yes<br>
-                  <input type="radio" name="nnocolor" value="1"> no<br>
+                  <input type="radio" name="howmany" value="nomatter"> It does not matter <br>
+                  <input type="radio" name="howmany" value="fewer"> The fewer the better <br>
+                  <input type="radio" name="howmany" value="more"> The more the better <br>
+                  <input type="radio" name="howmany" value="49"> Exactly 49 symbols <br>
                 </form>
             </div>
 
-            <!-- Q3 -->
+            <!-- Q2 -->
             <h3 style="margin-left: 20%; margin-right : 20%; text-align: center;">
-                What's the the goal of this experiment? 
+                The robots communicate by:
             </h3>
             <div style="display: flex;
               align-items: center;
               justify-content: center;">
                 <form action="">
-                  <input type="radio" name="exptask" value="fastest"> Put the symbols on the grid as fast as possible the robot guess your pattern quickly <br>
-                  <input type="radio" name="exptask" value="other"> Fill the entire grid starting from the upper-left corner to communicate perfectly <br>
-                  <input type="radio" name="exptask" value="fewest"> Put few, well-chosen symbols on the grid so the robot can guess your pattern correctly<br>
+                  <input type="radio" name="robcomm" value="copy"> They try to copy my grid, but make random mistakes <br>
+                  <input type="radio" name="robcomm" value="guess"> They try to guess my pattern based on the symbols they have seen <br>
+                  <input type="radio" name="robcomm" value="noans"> The instructions did not specify this <br>
+                  <input type="radio" name="robcomm" value="morse"> They send Morse code over short-frequencey radio waves <br>
                 </form>
             </div>
 
