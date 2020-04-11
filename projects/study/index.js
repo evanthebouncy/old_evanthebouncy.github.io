@@ -33,7 +33,7 @@ $(document).ready(function(){
     	if (task_ans == "fewest" && howmany_ans == "fewer" && robcomm_ans == "guess") {
 
             // put stuff into database
-            let ref_loc = `${experiment_batch}/${user_id}/quiz`;
+            let ref_loc = `${experiment_batch}/${parseInt(user_id)}/quiz`;
             console.log(ref_loc);
 
             var ref = fbase.ref(ref_loc);
