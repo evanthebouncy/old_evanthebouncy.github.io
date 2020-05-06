@@ -11,6 +11,7 @@ var CUR_STAMP = 0;
 var TARGETS = {};
 var REC = {};
 var STAMPS = [];
+var TASK_NAME = "";
 
 // each action item is (example_id[example0, example1, etc], io_id[0 is input, 1 is output], x, y, stamp_id)
 // for example : var ACTION_SEQUENCE = [[0, 0, 2, 3, 0], [0, 1, 3, 1, 1]];
@@ -83,6 +84,12 @@ function setUpEditionGridListeners(jqGrid) {
             // Else: fill just this cell.
             setCellSymbol(cell, symbol);
         }
+
+        // each time we click we re-synch all the stamps
+        for (var stamp_idx = 0; stamp_idx < STAMPS.length; stamp_idx++) {
+            copyJqGridToDataGrid($(`#stamp_${stamp_idx}`), STAMPS[stamp_idx]);
+        }
+
     });
 }
 
@@ -185,13 +192,13 @@ function check_reconstruction() {
             all_reconstruct_good = false;
         }
         if (same_output != true) {
-            alert(`not same on input ${key} on ${[same_output[1], same_output[0]]}`);
+            alert(`not same on output ${key} on ${[same_output[1], same_output[0]]}`);
             all_reconstruct_good = false;
         }
     });
-
     if (all_reconstruct_good){
-        alert(`evertyhing same`);
+        alert(`evertyhing same, attempting to save on server of parse ${TASK_NAME}`);
+        store_parse(TASK_NAME, STAMPS, ACTION_SEQUENCE);
     }
 }
 
@@ -352,11 +359,12 @@ function loadTaskFromFile(e) {
     reader.readAsText(file);
 }
 
-function randomTask() {
+function loadTask(task_index) {
     var subset = "training";
     $.getJSON("https://api.github.com/repos/fchollet/ARC/contents/data/" + subset, function(tasks) {
-        var task_index = Math.floor(Math.random() * tasks.length)
         var task = tasks[task_index];
+        TASK_NAME = task['name'].split('.')[0];
+        retrieve_parse(TASK_NAME);
         $.getJSON(task["download_url"], function(json) {
             try {
                 train = json['train'];
@@ -377,6 +385,11 @@ function randomTask() {
     .error(function(){
       errorMsg('Error loading task list');
     });
+}
+
+function randomTask() {
+    var task_index = Math.floor(Math.random() * 400)
+    loadTask(task_index);
 }
 
 function nextTestInput() {
@@ -450,38 +463,25 @@ function initializeSelectable() {
 }
 
 // Evan's Code
-function add_stamp() {
+function render_stamp(stamp_id, stamp_grid) {
+    let height = stamp_grid.height;
+    let width = stamp_grid.width;
+    var new_stamp = $('<div id="stamp_' + stamp_id + '" class="stamp" index="' + stamp_id + `">stamp ${stamp_id}</div>`);
 
-    // make the stamp =======
-    let size = parseSizeTuple($('#stamp_size').val());
-    let height = size[0];
-    let width = size[1];
-    let cur_stamp_num = $("#list_of_stamps .stamp").length;
-    var new_stamp = $('<div id="stamp_' + cur_stamp_num + '" class="stamp" index="' + cur_stamp_num + `">stamp ${cur_stamp_num}</div>`);
-
-    // add a grid to stamp
-    let blank_grid = transparent_grid(height, width);
-    STAMPS.push(blank_grid);
-
-    refreshEditionGrid(new_stamp, blank_grid);
+    refreshEditionGrid(new_stamp, stamp_grid);
     let show_stamp_size = Math.min(Math.max(30*height, 30*width), 400);
 
-    fitCellsToContainer(new_stamp, blank_grid.height, blank_grid.width, show_stamp_size, show_stamp_size);
+    fitCellsToContainer(new_stamp, height, width, show_stamp_size, show_stamp_size);
 
     // make the use stamp button ========
-    const new_stamp_use = $(`<button id="stamp_use_${cur_stamp_num}" class="use_stamp_button">use stamp ${cur_stamp_num}</button>`);
+    const new_stamp_use = $(`<button id="stamp_use_${stamp_id}" class="use_stamp_button">use stamp ${stamp_id}</button>`);
     new_stamp_use.click(function(event){
-        CUR_STAMP = cur_stamp_num;
+        CUR_STAMP = stamp_id;
         // clear other butotn to white
         $(".use_stamp_button").css("background-color", "white");
         // set self color to green
         $(this).css("background-color", "#90EE90");
     });
-    // new_stamp_use.appendTo('#list_of_stamps');
-
-
-
-    // new_stamp.appendTo('#list_of_stamps');
 
     // make a container that wraps the use_stamp button and the stamp itself
     var stamp_container = $(`<div class="stamp_container"></div>`);
@@ -489,7 +489,74 @@ function add_stamp() {
     new_stamp.appendTo(stamp_container);
     
     stamp_container.appendTo('#list_of_stamps');
+}
 
+// re-render all the stamps
+function render_stamps() {
+    $('#list_of_stamps').html('');
+    for (var ii = 0; ii < STAMPS.length; ii ++){
+        render_stamp(ii, STAMPS[ii]);
+    }
+}
+
+function add_stamp() {
+
+    // make the stamp =======
+
+    // step 1 : add a blank stamp of the right size to the canvas
+    let size = parseSizeTuple($('#stamp_size').val());
+    let height = size[0];
+    let width = size[1];
+    let blank_grid = transparent_grid(height, width);
+    STAMPS.push(blank_grid);
+    // step 2 : re-render all the stamps
+    render_stamps();
+}
+
+function copy_stamp() {
+    let last_stamp = STAMPS[STAMPS.length-1];
+    let last_stamp_again = JSON.parse(JSON.stringify(last_stamp));
+    STAMPS.push(last_stamp_again);
+    render_stamps();
+}
+
+function rotateRight(array) {
+    var result = [];
+    array.forEach(function (a, i, aa) {
+        a.forEach(function (b, j, bb) {
+            result[bb.length - j - 1] = result[bb.length - j - 1] || [];
+            result[bb.length - j - 1][i] = b;
+        });
+    });
+    return result;
+}
+function rotate_stamp() {
+    let last_stamp = STAMPS[STAMPS.length-1];
+    let orig_height = last_stamp.height;
+    let orig_width = last_stamp.width;
+    let rot_stamp_grid = rotateRight(last_stamp.grid);
+    last_stamp.height = orig_width;
+    last_stamp.width = orig_height;
+    last_stamp.grid = rot_stamp_grid;
+    render_stamps();
+}
+
+function flip_stamp() {
+    let last_stamp = STAMPS[STAMPS.length-1];
+    last_stamp.grid.reverse();
+    render_stamps();    
+}
+
+function recolor_stamp() {
+    let last_stamp = STAMPS[STAMPS.length-1];
+    for (var ii = 0; ii < last_stamp.height; ii++) {
+        for (var jj = 0; jj < last_stamp.width; jj++) {
+            if (last_stamp.grid[ii][jj] != 10) {
+            last_stamp.grid[ii][jj] = (last_stamp.grid[ii][jj] + 1 ) % 10;
+            }
+        }
+    }
+    render_stamps();
 }
 
 // Initial event binding.
