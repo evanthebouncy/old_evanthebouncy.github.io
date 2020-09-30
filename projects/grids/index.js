@@ -112,7 +112,7 @@ function make_target(){
 
     var box = document.createElement("div"); 
     box.id = "target_text";
-    box.innerHTML = "target";
+    box.innerHTML = "target <br> (click to randomize)";
     box.className = "box text";
     box.style.top = "" + OFFSETTEXTTOP + "vmin";
     box.style.left = "" + 10 + "vmin";
