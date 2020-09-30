@@ -12,6 +12,7 @@ var GRID_TOPP = -3;
 
 var OFFSETTEXTTOP = WW * 0.1;
 var OFFSETTOP = GRID_TOPP + WW * 1.2;
+var OFFSET11 =   GRID_TOPP + WW * 5;
 var OFFSET2 =   GRID_TOPP + WW * 7;
 var OFFSET3 =   GRID_TOPP + WW * 15;
 var OFFSET4 =   GRID_TOPP + OFFSET3 + WW*3
@@ -118,6 +119,15 @@ function make_target(){
     box.style.left = "" + 10 + "vmin";
     $("#grid").append(box);
 
+    // render instruction here as well
+    var box = document.createElement("div"); 
+    box.id = "instruction_text";
+    box.innerHTML = "rule: get the robots to guess the target pattern with as few examples as possible";
+    box.className = "box text";
+    box.style.top = "" + OFFSET11 + "vmin";
+    box.style.left = "" + 10 + "vmin";
+    $("#grid").append(box);
+
     render_shape_list(target, "#target_box_");
 }
 
@@ -142,7 +152,7 @@ function make_candidates(){
         // candidate text
         var box = document.createElement("div"); 
         box.id = "candidate_text_" + cand;
-        box.innerHTML = cand == 0 ? "robot 1 thinks this " : "robot 2 thinks this";
+        box.innerHTML = cand == 0 ? "robot 1 thinks the pattern is" : "robot 2 thinks the pattern is";
         box.className = "box text small";
         box.style.top = "" + (OFFSETTOP - 2.3 + WW_SMOL * cand * 8) + "vmin";
         box.style.left = "" + (OFFSET4 + 0.1) + "vmin";
