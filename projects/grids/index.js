@@ -153,7 +153,7 @@ function make_candidates(){
         // candidate text
         var box = document.createElement("div"); 
         box.id = "candidate_text_" + cand;
-        box.innerHTML = cand == 0 ? "robot 1 thinks the pattern is" : "robot 2 thinks the pattern is";
+        box.innerHTML = cand == 0 ? "white robot thinks the pattern is" : "blue robot thinks the pattern is";
         box.className = "box text small";
         box.style.top = "" + (OFFSETTOP - 2.3 + WW_SMOL * cand * 8) + "vmin";
         box.style.left = "" + (OFFSET4 + 0.1) + "vmin";
