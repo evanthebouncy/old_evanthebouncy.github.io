@@ -122,7 +122,8 @@ function make_target(){
     // render instruction here as well
     var box = document.createElement("div"); 
     box.id = "instruction_text";
-    box.innerHTML = "rule: get the robots to guess the target pattern with as few examples as possible";
+    // box.innerHTML = "rule: get the robots to guess the target pattern with as few examples as possible";
+    box.innerHTML = "what is the fewest number of examples you can give to get the white robot to guess the target pattern? what about the blue robot?";
     box.className = "box text";
     box.style.top = "" + OFFSET11 + "vmin";
     box.style.left = "" + 10 + "vmin";
